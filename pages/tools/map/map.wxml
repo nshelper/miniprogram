@@ -1,0 +1,16 @@
+
+ <map id="map" longitude="{{longitude}}" latitude="{{latitude}}" scale="{{scale}}" bindcontroltap="controltap" markers="{{markers}}" bindmarkertap="markertap" bindregionchange="regionchange" show-location="true"  show-compass="true" class="second"> 
+ <cover-view class="head_box">
+    <cover-view class="each_item {{!headType?'item_red':''}}"  bindtap="selectArea" id ="little">赛罕</cover-view>
+    <cover-view class="each_item {{headType?'item_blue':''}}" bindtap="selectArea" id="large">盛乐</cover-view>
+ </cover-view>
+ <cover-view class="send">
+    <cover-image class="img" bindtap="pushData" src="/images/common/send.png"></cover-image>
+     <cover-view  bindtap="pushData" class="text">一起努力</cover-view>
+ </cover-view>
+ </map>
+ <scroll-view scroll-x="true" class="head">
+<view wx:for="{{items[headType]}}" wx:for-index="id" wx:for-item="each" wx:key="{{id}}" id="{{id}}" data-type="{{headType}}"  class="item {{status==id&&headType?'focus_second':''}} {{status==id&&!headType?'focus':''}}"  bindtap="select">{{each}}</view>
+</scroll-view>
+
+

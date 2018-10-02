@@ -1,0 +1,10 @@
+<!--pages/more/ad.wxml-->
+<view class="cells">
+  <block wx:for="{{options}}" wx:key="{{this}}">
+    <view class="cell">
+    <view class="cell_text">{{item.name}}</view>
+    <switch wx:if="{{item.status}}" checked class="cell_switch" data-index="{{index}}" bindchange="switchChange"></switch>
+     <switch wx:else  class="cell_switch" data-id="{{index}}" data-index="{{index}}" bindchange="switchChange"></switch>
+    </view>
+  </block>
+</view>

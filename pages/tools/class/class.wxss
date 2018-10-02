@@ -1,0 +1,148 @@
+/* pages/tools/class/class.wxss */
+page{
+  background-color: #f7f7f7;
+  height: 100%;
+  overflow: hidden;
+  position: fixed;
+  top:0;
+}
+.header{
+  width: 100%;
+  height: 80rpx;
+  background-color: #99CCFF;
+  display: flex;
+  flex-flow:row nowrap;
+  overflow: hidden;
+}
+.options{
+  height: 80rpx;
+  background-color: red;
+}
+.options image{
+  line-height:80rpx;
+  padding: 20rpx;
+  display: block;
+  height:40rpx;
+  width:40rpx;
+}
+.items{
+  color:#ffffff;
+  display: flex;
+  flex-flow: row nowrap;
+  width: 980rpx;
+  text-align: center;
+  font-size: 30rpx;
+  font-weight: bold;
+}
+.items .item{
+  display: block;
+  line-height: 80rpx;
+  width: 100rpx;
+  height: 77rpx;
+  margin: 0 15rpx;
+}
+.items .item_active{
+  border-bottom: 5rpx solid red;
+  color:red;
+}
+.list{
+  display: flex;
+  flex-flow:row nowrap;
+  background-color: #f7f7f7;
+  width: 100%;
+  height: 95%;
+  overflow: hidden;
+}
+.detail_items{
+  overflow: hidden;
+  height: 100%;
+  display: flex;
+  flex-flow: row nowrap;
+  width: 980rpx;
+  text-align: center;
+}
+.list .detail_left{
+  width: 80rpx;
+  height: 100%;
+  display: flex;
+  flex-flow: column nowrap;
+  padding:5rpx;
+}
+.detail_left .node{
+  text-align: center;
+  line-height: 100rpx;
+  width: 70rpx;
+  height: 100rpx;
+  margin:6rpx auto;
+  border-radius: 10rpx;
+  background-color: rgba(204,204,204,.3);
+}
+.detail_middle{
+  width: 130rpx;
+  height: 100%;
+  display: flex;
+  flex-flow: column nowrap;
+}
+.detail_middle .node{
+  text-align: center;
+  font-size: 22rpx;
+  overflow: hidden;
+  width: 120rpx;
+  height: 212rpx;
+  border-radius: 20rpx;
+  margin:6rpx auto;
+  background-color: rgba(204,204,204,.3);
+}
+.info{
+  padding:12rpx;
+
+}
+.bg{
+  overflow: hidden;
+  width: 100%;
+  height: 100%;
+  position:fixed;
+  top:0;
+  left:0;
+  right:0;
+  bottom:0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+.bg .detail{
+  vertical-align: middle;
+  width:70%;
+  max-height: 80%;
+  background-color: #fff;
+  margin:0 auto;
+  border-radius: 20rpx;
+  padding:50rpx;
+}
+.detail__content {
+  margin-bottom: 20rpx;
+}
+.detail__item {
+  display: flex;
+  font-size: 25rpx;
+  padding: 10rpx 0;
+  color: #000;
+  border-top: solid 1rpx #f7f7f7;
+}
+.detail__key {
+  font-weight: bold;
+  margin-right: 20rpx;
+  color: #434748;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow:ellipsis;
+}
+.detail__value{
+ font-weight: bold;
+ color: #999;
+ display: inline;
+ overflow: hidden;
+ white-space: nowrap;
+ text-overflow:ellipsis;
+}

@@ -1,0 +1,90 @@
+<!-- 导入模板 -->
+<import src="/template/list/list.wxml" />
+<import src="/template/placeholder/placeholder.wxml" />
+<import src="/template/floor/floor.wxml" />
+
+<!-- index -->
+<view class="index">
+  <!-- 导航 -->
+  <view class="main">
+      <swiper indicator-dots="{{false}}"
+      autoplay="true" interval="3000" duration="1000" circular="true" class="swiper_head" >
+      <block wx:for="{{headTool}}" wx:key="id" >
+        <swiper-item>
+          <navigator class="tool__item head_swiper" style="background-image:url({{item.path?item.path:randomImg}});" url="{{item.url}}">
+                    <view class="tool_bottom_linear" wx:if="{{item.title}}"></view>
+                    <view class="tool_bottom_line" wx:if="{{item.title}}">
+                        <view class="item_time_icon">
+                            <image src="/images/common/author.png"></image>
+                        </view>
+                        <view class="item_time_text">{{item.author}}</view>
+                        <view class="item_time_icon">
+                            <image src="/images/common/time.png"></image>
+                        </view>
+                        <view class="item_time_text">{{item.date}}</view>
+                    </view>
+                    <view class="item_title" wx:if="{{item.title}}">{{item.title}}</view>
+                </navigator>
+        </swiper-item>
+      </block>
+      </swiper>
+    <!--公告栏目-->
+      <swiper class="swiper_container" vertical="true" autoplay="true" circular="true" interval="2000">
+      <block wx:for="{{msgList}}" wx:key="index">
+        <swiper-item bindtap="jump" data-select="{{item.select}}">
+        <view class="swiper_item">{{item.title}}</view>
+        </swiper-item>
+      </block>
+    </swiper>
+    <!--  流量&一卡通数据展示 -->
+      <view class="tool_modules">
+            <view class="tool_info" id="card" bindtap="navigatetoPage">
+                <view class="title">内蒙古师范大学学生卡：{{userId?userId:"N/A"}}</view>
+                <view class="firstText">一卡通余额:{{cardbal}}</view>
+                <image wx:if="{{!cardbal}}" class="loading" src="/images/common/loading.gif"></image>
+                <view class="secondText">赛尔卡余额:{{net.package_name?net.remain_bytes+"/"+net.bytes:"N/A"}}</view>
+                <image class="tool__icon" src="/images/tool/info.png"></image>
+            </view>
+            <view class="model_title"> 今日课表 </view>
+            <view class="model_line"></view>
+            <!-- 课表模块 -->
+            <view  class="tool_class">
+              <block wx:if="{{todayClass.length>0}}" wx:for="{{todayClass}}" wx:key="this">
+              <view class="class_items">
+                <view class="items_title">{{item.djj_xh+'节：'}}</view>
+                <view class="items_item">{{item.kcm}}</view>
+                <view class="items_position">{{item.skddmc}}</view>
+                </view>
+              </block>
+               <view class="class_items" wx:if="{{todayClass.length == 0}}"> 今天没有课哎！ </view>
+               <view class="class_items">
+                  <view id="class_" bindtap="navigatetoPage" hover-stop-propagation="true" class="items_button" hover-class="items_button_active">more</view>
+               </view>
+            </view>
+              <!--小图标板块-->
+            <view class="tools">
+            <block wx:for="{{littleTool}}" wx:key="id">
+              <view class="tools__item"  data-support="{{item}}"  bindtap="getSupport" wx:if="{{bind === true}}">
+                <image class="tools__icon  {{ !item.support ? 'img_filter':'' }} " src="/images/tool/{{item.id}}.png"></image>
+              </view>
+              <view class="tools__item" data-support="{{item}}" wx:if="{{bind === false}}" bindtap="tapDisabledItem">
+                <image class="tools__icon {{ !item.support ? 'img_filter':'' }}" src="/images/tool/{{item.id}}.png"></image>
+              </view>
+            </block>
+            </view>
+        </view>
+    <!--底部模块-->
+      <block wx:for="{{floorTool}}" wx:key="id">
+        <navigator class="tool__item" url="{{item.url}}" >
+          <image class="tool__icon" src="/images/tool/{{item.id}}.png"></image>
+        </navigator>
+      </block>
+    <!-- 首页广告  wx:if="{{indexAd}}" -->
+      <view  class="index_ad">
+        <ad  unit-id="adunit-0cdff32eda6c135a"></ad>
+      </view>
+    <!-- 底部版权 -->
+        <template is="floor" />
+  </view>
+  <view class="bg"></view>
+</view>

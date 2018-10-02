@@ -1,0 +1,103 @@
+<!-- 导入模板 -->
+<import src="/template/course/course.wxml" />
+<import src="/template/placeholder/placeholder.wxml" />
+
+<view wx:if="{{courseStatus}}" class="course">
+  <!-- 头部 -->
+  <view class="course__head">
+    <!-- 周次 -->
+    <view class="course__weekly">
+      <view class="course__week--current">{{weeklyArray[currentWeekly]}}</view>
+      <block wx:for="{{week}}" wx:key="*this">
+        <text class="course__week {{week[today] === item ? 'course__week--today' : ''}}">{{item}}</text>
+      </block>
+    </view>
+  </view>
+  <!-- 主体部分 -->
+  <view class="course__main">
+    <!-- 左侧时间段 -->
+    <view class="course__left">
+      <text class="course__time-slot">1</text>
+      <text class="course__time-slot">2</text>
+      <text class="course__time-slot">3</text>
+      <text class="course__time-slot">4</text>
+      <text class="course__time-slot">5</text>
+      <text class="course__time-slot">6</text>
+      <text class="course__time-slot">7</text>
+      <text class="course__time-slot">8</text>
+      <text class="course__time-slot">9</text>
+      <text class="course__time-slot">10</text>
+      <text class="course__time-slot">11</text>
+      <text class="course__time-slot">12</text>
+    </view>
+    <!-- 周一至周日课程 -->
+    <!-- 周一 -->
+    <view class="course__section course__mon">
+      <block wx:for="{{mon}}" wx:key="{{weekly + name + rel}}">
+        <template is="course-item" data="{{current: item.current, course: item, name: item.name, place: item.place, position: item.time, colorNum: item.rel}}"
+        />
+      </block>
+    </view>
+    <!-- 周二 -->
+    <view class="course__section course__tue">
+      <block wx:for="{{tue}}" wx:key="{{weekly + name + rel}}">
+        <template is="course-item" data="{{current: item.current, course: item,  name: item.name, place: item.place, position: item.time, colorNum: item.rel}}"
+        />
+      </block>
+    </view>
+    <!-- 周三 -->
+    <view class="course__section course__wed">
+      <block wx:for="{{wed}}" wx:key="{{weekly + name + rel}}">
+        <template is="course-item" data="{{current: item.current, course: item,  name: item.name, place: item.place, position: item.time, colorNum: item.rel}}"
+        />
+      </block>
+    </view>
+    <!-- 周四 -->
+    <view class="course__section course__thu">
+      <block wx:for="{{thu}}" wx:key="{{weekly + name + rel}}">
+        <template is="course-item" data="{{current: item.current, course: item,  name: item.name, place: item.place, position: item.time, colorNum: item.rel}}"
+        />
+      </block>
+    </view>
+    <!-- 周五 -->
+    <view class="course__section course__fri">
+      <block wx:for="{{fri}}" wx:key="{{weekly + name + rel}}">
+        <template is="course-item" data="{{current: item.current, course: item,  name: item.name, place: item.place, position: item.time, colorNum: item.rel}}"
+        />
+      </block>
+    </view>
+    <!-- 周六 -->
+    <view class="course__section course__sat">
+      <block wx:for="{{sat}}" wx:key="{{weekly + name + rel}}">
+        <template is="course-item" data="{{current: item.current, course: item,  name: item.name, place: item.place, position: item.time, colorNum: item.rel}}"
+        />
+      </block>
+    </view>
+    <!-- 周日 -->
+    <view class="course__section course__sun">
+      <block wx:for="{{sun}}" wx:key="{{weekly + name + rel}}">
+        <template is="course-item" data="{{current: item.current, course: item,  name: item.name, place: item.place, position: item.time, colorNum: item.rel}}"
+        />
+      </block>
+    </view>
+  </view>
+  <!-- 底部操作栏 -->
+  <view class="foot">
+    <image class="foot__current foot__ic-sync" src="/images/common/sync.png" bindtap="setCurrent"></image>
+    <picker bindchange="bindPickerChange" value="{{currentWeekly}}" range="{{weeklyArray}}">
+      <view class="foot__Weekly">
+        <text>本学期第{{weeklyArray[currentWeekly]}}</text>
+        <image class="foot__ic-up" src="/images/common/up_small.png"></image>
+      </view>
+    </picker>
+    <image class="foot__other foot__ic-add" src="/images/common/add.png" bindtap="seeOther"></image>
+  </view>
+</view>
+
+<!-- 暂无课程 -->
+<block wx:if="{{!courseStatus}}">
+  <template is="placeholder-fullpage" data="{{bg:'/images/placeholder/bg_no_data.png'}}" />
+</block>
+
+<!-- 详细信息 -->
+<template wx:if="{{detailStatus}}" is="course-detail" data="{{courseDetail}}" />

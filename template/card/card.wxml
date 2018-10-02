@@ -1,0 +1,44 @@
+<!-- 导入模板 -->
+<import src="/template/placeholder/placeholder.wxml" />
+<import src="/template/floor/floor.wxml" />
+
+<!-- 成绩卡片 -->
+<template name="card-score">
+  <view class="card-score">
+    <view class="card-score__head">
+      <button class="card-score__share" bindtap="getGpa">
+         <image class="card-score__ic-share" src="/images/common/navigategpa.png"></image>
+      </button>
+      <button class="card-score__share" bindtap="getCode">
+        <image class="card-score__ic-share" src="/images/common/updata.png"></image>
+      </button>
+    </view>
+    <block wx:if="{{list}}" >
+     <picker class="card_picker"  bindchange="bindPickerChange" value="{{index}}" range="{{selectTerm}}">
+               <view class="card-score_term">{{selectTerm[index]}}</view>
+                <view class="shadow"></view>
+     </picker>
+            
+      
+     <view class="card-score__box">
+         <block wx:if="{{list}}" wx:for="{{list.values}}"  wx:key="course">
+           <view class="card-score__item" data-score="{{item}}" bindtap="showDetail">
+            <text class="card-score_info4">{{item.course}}</text>
+            <text class="card-score_info1">{{item.credit ? item.credit : '-'}}</text>
+            <text class="card-score_info3">{{item.attributes ? item.attributes : '-'}}</text>
+            <text class="card-score_info2 {{item.score<60 ? 'ltitle_red' : ''}}">{{item.score ? item.score : '-'}}</text>
+           </view>
+         </block>
+     </view>
+     </block>
+    
+      <block wx:else>
+        <template is="placeholder-basic" data="{{bg: '/images/placeholder/bg_no_data.png', text: '暂无成绩信息'}}" />
+      </block>
+     
+  </view>
+  <!-- 广告测试 -->
+  <ad wx:if="{{scoreAd}}" class="page_ad" unit-id="adunit-26e75bb832799b6e"></ad>
+   <!-- 底部 -->
+   <template  wx:if="{{list}}" is="floor" />
+</template>

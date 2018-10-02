@@ -1,0 +1,341 @@
+.index {
+    background-color: #f7f7f7;
+    position: relative;
+    z-index: 0;
+}
+
+.bg {
+    width: 100%;
+    height: 300rpx;
+    position: absolute;
+    background-image: linear-gradient(180deg,#99CCFF,#99CCFF,#f7f7f7);
+    top: 0;
+    z-index: -1;
+    border-radius: 18%;
+    transform: translateY(-80rpx);
+    filter: blur(3rpx);
+}
+
+.model_title {
+    text-align: center;
+    margin: 10rpx auto;
+    font-size: 38rpx;
+    font-weight: bold;
+}
+
+.model_line {
+    margin: 8rpx auto;
+    background-color: #06e9c1;
+    width: 66rpx;
+    height: 8rpx;
+    border-radius: 44rpx;
+}
+
+.tool_class {
+    position: relative;
+    display: block;
+    width: 652rpx;
+    min-height: 100rpx;
+    margin: 10rpx auto;
+    overflow: hidden;
+    border-radius: 25rpx;
+    background-color: #a8d5ef;
+}
+
+.tool_class .class_items {
+    position: relative;
+    width: 90%;
+    margin-top: 20rpx;
+    margin-left: 32rpx;
+    color: #fff;
+    font-size: 30rpx;
+    display: flex;
+    height: 40rpx;
+    line-height: 40rpx;
+}
+
+.items_title {
+    flex: 1;
+    font-weight: bold;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.items_item {
+    flex: 2;
+    font-size: 25rpx;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.items_position {
+    text-align: center;
+    font-size: 25rpx;
+    flex: 1;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.items_button {
+    position: absolute;
+    right: -10rpx;
+    bottom: 10rpx;
+    width: 85rpx;
+    text-align: center;
+    height: 30rpx;
+    font-weight: bold;
+    border-radius: 20rpx;
+    border: 2px solid #fff;
+    font-size: 25rpx;
+    line-height: 28rpx;
+    overflow: hidden;
+    transform: 0.5s;
+}
+
+.items_button_active {
+    transform: translateY(3rpx);
+}
+
+.index_head {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding-top: 10rpx;
+    background-color: #f4f4f4;
+}
+
+.head_data {
+    font-size: 16pt;
+    color: #000;
+    font-weight: bold;
+}
+
+.index_ad {
+    display: block;
+    width: 652rpx;
+    margin: 10rpx auto;
+    overflow: hidden;
+    border-radius: 25rpx;
+}
+
+.index_ad ad {
+    width: 100%;
+}
+
+.index_floor {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 40rpx 0rpx 20rpx 0rpx;
+}
+
+.floor_logo {
+    width: 100rpx;
+    height: 100rpx;
+}
+
+.floor_data {
+    padding-top: 15rpx;
+    text-align: center;
+    font-size: 8pt;
+    color: #7a7775;
+    font-weight: normal;
+    font-style: italic;
+}
+
+.tools-swiper {
+    height: 400rpx;
+    background: #f7f7f7;
+}
+
+.tools {
+    display: flex;
+    flex-flow: row wrap;
+    align-content: flex-start;
+    padding-bottom: 10rpx;
+    margin: 0rpx 18rpx;
+}
+
+.tools__item {
+    display: flex;
+    flex-flow: column wrap;
+    justify-content: center;
+    align-items: center;
+    box-sizing: border-box;
+    width: 50%;
+}
+
+.tools__icon {
+    display: block;
+    width: 320rpx;
+    height: 117rpx;
+    margin: 5rpx auto;
+}
+
+.tools__name {
+    display: block;
+    font-size: 10pt;
+    font-weight: bold;
+}
+
+.main {
+    padding-top: 30rpx;
+}
+
+.tool__icon {
+    display: block;
+    width: 675rpx;
+    height: 248rpx;
+    margin: 5rpx auto;
+}
+
+.head_swiper {
+    width: 652rpx;
+    overflow: hidden;
+}
+
+.tool__item {
+    display: flex;
+    flex-flow: column wrap;
+    justify-content: center;
+    align-items: center;
+    box-sizing: border-box;
+    margin: 0rpx auto;
+    border-radius: 35rpx;
+    position: relative;
+    height: 248rpx;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.tool_bottom_line {
+    width: 100%;
+    background-color: rgba(255,255,255,.9);
+    height: 60rpx;
+    position: absolute;
+    bottom: 0rpx;
+    display: flex;
+    flex-flow: row nowrap;
+}
+
+.tool_bottom_line .item_time_icon {
+    display: flex;
+    align-items: center;
+    line-height: 60rpx;
+    margin-left: 30rpx;
+}
+
+.item_time_icon image {
+    width: 35rpx;
+    height: 35rpx;
+}
+
+.tool_bottom_line .item_time_text {
+    margin-left: 20rpx;
+    line-height: 60rpx;
+    color: #707070;
+    font-size: 24rpx;
+}
+
+.tool__item .item_title {
+    width: 600rpx;
+    position: absolute;
+    left: 30rpx;
+    bottom: 70rpx;
+    font-weight: bold;
+    font-size: 30rpx;
+    color: azure;
+    filter: alpha(Opacity=80);
+    opacity: 0.8;
+    max-height: 100rpx;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.tool_bottom_linear {
+    width: 100%;
+    height: 192rpx;
+    background-image: linear-gradient(0deg,rgba(0,0,0,.8),rgba(0,0,0,.6),rgba(0,0,0,0),rgba(0,0,0,0));
+    bottom: 0rpx;
+    position: absolute;
+}
+
+.tool_modules {
+    display: flex;
+    flex-flow: column wrap;
+    justify-content: center;
+    align-items: center;
+    box-sizing: border-box;
+    margin: 0rpx 35rpx;
+    background-image: linear-gradient(180deg,#f7f7f7,rgba(197,249,244,.6),#f7f7f7);
+}
+
+.tool_info {
+    position: relative;
+}
+
+.tool_info .title {
+    position: absolute;
+    top: 45rpx;
+    left: 50rpx;
+    color: #ffffff;
+    font-size: 20rpx;
+}
+
+.tool_info .firstText {
+    position: absolute;
+    top: 90rpx;
+    left: 70rpx;
+    color: #ffffff;
+    font-size: 35rpx;
+    font-weight: bold;
+}
+
+.tool_info .secondText {
+    position: absolute;
+    top: 140rpx;
+    left: 70rpx;
+    color: #ffffff;
+    font-size: 35rpx;
+    font-weight: bold;
+}
+
+.tool_info .loading {
+    width: 32rpx;
+    height: 22rpx;
+    position: absolute;
+    top: 105rpx;
+    left: 260rpx;
+}
+
+.swiper_container {
+    margin: 0rpx auto;
+    height: 55rpx;
+    width: 82%;
+}
+
+.swiper_item {
+    font-size: 28rpx;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    letter-spacing: 2px;
+    text-align: center;
+}
+
+.img_filter {
+    filter: grayscale(100%);
+}
+
+.img_block {
+    filter: drop-shadow(8px 8px 10px gray);
+}
+
+.swiper_head {
+    height: 285rpx;
+}

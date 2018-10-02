@@ -1,0 +1,71 @@
+<!--pages/tools/class/class.wxml-->
+<view class="header">
+  <view class="options">
+    <picker mode="date" value="{{date}}" start="1970-01-01" end="2038-01-01" bindchange="bindDateChange">
+      <image src="/images/common/options.png"></image>
+    </picker>
+  </view>
+  <scroll-view  scroll-x="{{ headerStatus}}" scroll-y="{{false}}" scroll-left="{{headerLeft}}"  scroll-with-animation="true"  bindtouchstart="touchTitle" bindtouchend="touchEnd" >
+    <view class="items">
+      <block wx:for="{{days}}" wx:key="index">
+        <view class="item {{index == today?'item_active':''}}">{{item}}</view>
+      </block>
+    </view>
+  </scroll-view>
+</view>
+<view class="list">
+  <view class="detail_left">
+    <block wx:for="{{nodes}}" wx:key="index">
+      <view class="node">{{item}}</view>
+    </block>
+  </view>
+  <scroll-view scroll-x="true" scroll-y="{{false}}" bindscroll="headerPosition" >
+    <view class="detail_items">
+        <block wx:if="{{allClass.length>0}}" wx:for="{{allClass}}" wx:for-item="xx" wx:key="index">
+          <view class="detail_middle">
+            <block wx:for="{{xx}}" wx:for-item="node" wx:key="this">
+              <view class="node" data-item="{{node}}" bindtap="showDetail">
+                <view class="info" >
+                  <block wx:if="{{node.length>0}}" wx:for="{{node}}" wx:key="this">
+                  {{item.kcm}}@{{item.skddmc}}\n{{item.rq}}
+                </block>
+              </view>
+              </view>
+            </block>
+          </view>
+        </block>
+    </view>
+  </scroll-view>
+</view>
+<view class="bg" id="bg" wx:if="{{showStatus}}" bindtap="hiddenDetail">
+  <view class="detail">
+    <block wx:for="{{detailItems}}"  wx:key="this">
+      <view class="detail__content">
+          <view class="detail__item">
+            <text class="detail__key">课程:</text>
+            <text class="detail__value">{{item.kcm}}</text>
+          </view>
+          <view class="detail__item">
+            <text class="detail__key">教师:</text>
+            <text class="detail__value">{{ item.jsxm || '-'}}</text>
+          </view>
+          <view class="detail__item">
+            <text class="detail__key">校区:</text>
+            <text class="detail__value">{{ item.xqmc || '-'}}</text>
+          </view>
+          <view class="detail__item">
+            <text class="detail__key">最近上课时间:</text>
+            <text class="detail__value">{{item.rq || '-'}}</text>
+          </view>
+          <view class="detail__item">
+            <text class="detail__key">节次:</text>
+            <text class="detail__value">{{item.djj_xh || '-'}}</text>
+          </view>
+          <view class="detail__item">
+            <text class="detail__key">教室:</text>
+            <text class="detail__value">{{item.skddmc || '-'}}</text>
+          </view>
+      </view>
+    </block>
+  </view>
+</view>

@@ -1,0 +1,23 @@
+/*floor*/
+.index_floor {
+  position: relative;
+  top:12rpx;
+  bottom:6rpx;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 40rpx 0rpx 20rpx 0rpx;
+}
+.floor_logo {
+  width: 100rpx;
+  height: 100rpx;
+}
+.floor_data {
+  padding-top: 15rpx;
+  text-align: center;
+  font-size: 8pt;
+  color: #7a7775;
+  font-weight: normal;
+  font-style:italic;
+}

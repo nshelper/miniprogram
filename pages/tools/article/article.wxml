@@ -1,0 +1,42 @@
+<!-- 导入模板 -->
+<import src="/component/wxParse/wxParse.wxml" />
+<import src="/template/placeholder/placeholder.wxml" />
+
+<view class="article_container">
+  <block wx:if="{{content.content}}">
+    <view class="main">
+      <view class="header">
+        <view class="title">
+        <text class="title_text">{{content.title}}</text>
+        </view>
+        <view class="article_date">
+          <text class="date_text">{{content.author}}</text>
+          <text class="date_text">{{content.date}}</text>
+          </view>
+      </view> 
+      <view class="content">
+      <view class="content_img">
+        <image wx:if="{{content.himg}}" class="content_image" mode="widthFix" src="{{content.himg}}"></image>
+      </view>
+        <view wx:if="{{article.nodes}}" class="article_text" >
+        <template  class="article_text" is="wxParse" data="{{wxParseData:article.nodes}}"/>
+      </view>  
+          <!-- <rich-text wx:if="{{content.content}}" class="article_text" nodes="{{content.content}}" ></rich-text>   -->
+
+          <view class="content_view">
+                <view class="count">阅读:  {{content.view}}</view>
+                <view bindtap="upLike" class="count">
+                    <image class="count_icon" src="/images/common/like.png"></image>
+                {{like}}</view>
+          </view>
+      </view>
+    </view>
+  </block>
+  <block wx:if="{{!content.content}}">
+      <view class="none_container">
+        <template is="placeholder-fullpage" data="{{bg: '/images/placeholder/bg_no_data.png', text: '暂无信息'}}" />
+      </view>
+  </block>
+
+  <ad wx:if="{{articleAd}}" class="page_ad" unit-id="adunit-88d12390776a06e3"></ad>
+</view>

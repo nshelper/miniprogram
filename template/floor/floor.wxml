@@ -1,0 +1,7 @@
+<template name="floor">
+    <view class="index_floor">
+      <image class="floor_logo"  src="/images/tool/logo.png"></image>
+      <text class="floor_data" >STRUGGLER提供技术支持</text>
+      <text class="floor_data" >感谢誓言提供服务器支持</text>
+    </view>
+</template>

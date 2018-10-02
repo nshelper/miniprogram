@@ -1,0 +1,153 @@
+/* 成绩卡片 */
+.card-score {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 30rpx;
+  background-color: #fff;
+  box-shadow: 0 0 6rpx 6rpx #eee;
+  border-radius: 25rpx;
+  overflow: hidden;
+}
+.card-score__head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 15rpx;
+  border-bottom: solid 1rpx #eee;
+}
+.ltitle_red {
+  color: red;
+}
+.card-score__user-info {
+  margin-top: 15rpx;
+  font-size: 12pt;
+  color: #999;
+}
+.card-score__box {
+  min-height: 520rpx;
+}
+.card-score__item {
+  box-sizing: border-box;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 10rpx 0;
+  padding: 30rpx 0;
+  border-bottom: solid 1rpx #eee;
+}
+.card-score__mark {
+  margin-left: 45rpx;
+}
+.card-score__share {
+  display: flex;
+  align-items: center;
+  margin: 0;
+  padding: 0;
+  border: none;
+  outline: none;
+  background-color: transparent;
+}
+
+/* reset button */
+button::after {
+  content: '';
+  width: 0;
+  height: 0;
+}
+@keyframes button{
+  0%{ transform: translateY(0);}
+  50%{transform: translateY(3rpx);}
+  100%{ transform: translateY(0);}
+}
+.card-score__ic-share {
+  width: 40rpx;
+  height: 40rpx;
+  animation: button 1s linear 3;
+}
+/* 学期选择 */
+.card_picker{
+  position: relative;
+  text-align: center;
+  width: 80%;
+  margin:30rpx auto;
+  height: 80rpx;
+}
+.card-score_term {
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  z-index: 1;
+  line-height: 80rpx;
+  display: block;
+  font-size: 40rpx;
+  font-weight: bold;
+  color: #fff;
+  border-radius: 40rpx;
+  background-image: linear-gradient(120deg,#99FFFF,#99CCFF,#9999FF,#9999CC);
+}
+.shadow{
+  width: 100%;
+  margin: 0 auto;
+  position: absolute;
+  height: 100rpx;
+  z-index: 0;
+  bottom: -20rpx;
+  background-image: linear-gradient(120deg,#99FFFF,#99CCFF,#9999FF,#9999CC); 
+   filter: blur(10px); 
+   opacity: 0.5;   
+}
+
+.card-score_info4{
+  width:40%;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  font-size: 10pt;
+  font-weight: bold;
+  color: #434748;
+  text-align: center;
+}
+.card-score_info3{
+  width:30%;
+  font-size: 10pt;
+  font-weight: bold;
+  color: #434748;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  text-align: center;
+}
+.card-score_info2{
+  width:20%;
+  font-size: 10pt;
+  font-weight: bold;
+  text-align: center;
+}
+.card-score_info1{
+  width:10%;
+  font-size: 10pt;
+  font-weight: bold;
+  color: #434748;
+  text-align: center;
+}
+.note2_item{
+    display: block;
+    font-size:28rpx;
+    color:#000000;
+    line-height: 40rpx;
+    height: 120rpx;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow:ellipsis;
+}
+/* 广告样式 */
+.page_ad{
+  margin-top: 30rpx;
+  border-radius: 25rpx;
+}
+.page_ad ad{
+  margin:0 auto;
+}

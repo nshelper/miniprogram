@@ -1,0 +1,16 @@
+.physical {
+  background-color: #f7f7f7;
+}
+.floor{
+  margin-top:50rpx;
+  position:relative;
+  bottom:30rpx;
+  width:100%;
+  display:flex;
+  align-items: center;
+}
+/* 广告样式 */
+.page_ad{
+  margin:0 30rpx;
+  border-radius: 25rpx;
+}

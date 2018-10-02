@@ -1,0 +1,102 @@
+/* 头部周次 */
+.course__head {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  background-color: #f7f7f7;
+  z-index: 8;
+}
+.course__weekly {
+  display: flex;
+  flex-wrap: nowrap;
+  height: 100rpx;
+}
+.course__week--current,
+.course__week {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  height: 100%;
+  margin-right: 8rpx;
+  text-align: center;
+  font-size: 11pt;
+  font-weight: bold;
+}
+.course__week--current {
+  flex: 1;
+  padding-left: 10rpx;
+}
+.course__week {
+  flex: 2;
+}
+
+/* 主体部分 */
+.course__main {
+  position: relative;
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: center;
+  margin-top: 100rpx;
+  z-index: 7;
+}
+.course__left {
+  box-sizing: border-box;
+  flex: 1;
+  padding-left: 10rpx;
+  margin-right: 8rpx;
+  font-size: 11pt;
+  font-weight: bold;
+  background-color: #f7f7f7;
+}
+.course__section {
+  box-sizing: border-box;
+  position: relative;
+  flex: 2;
+  margin-right: 8rpx;
+  font-weight: bold;
+}
+.course__time-slot {
+  box-sizing: border-box;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 160rpx;
+}
+
+/* 今日 */
+.course__week--today {
+  background-color: #99ccff;
+}
+
+/* 底部 */
+.foot {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 100rpx;
+  padding: 0 45rpx;
+  background-color: #f7f7f7;
+  z-index: 9;
+}
+.foot__Weekly {
+  display: flex;
+  align-items: center;
+  font-size: 11pt;
+  color: #000;
+  font-weight: bold;
+}
+.foot__ic-up {
+  width: 45rpx;
+  height: 45rpx;
+}
+.foot__ic-add,
+.foot__ic-sync {
+  width: 45rpx;
+  height: 45rpx;
+}

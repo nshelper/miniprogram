@@ -1,0 +1,39 @@
+<!-- 获取验证码 -->
+<template name="getcode">
+  <view class="code" id="getcode" wx:if="{{helpStatus}}" >
+    <view class="code_box">
+      <image class="code_close" id="close-code" src="/images/common/clear.png" bindtap="hideCode"></image>
+      <block >
+        <view class="code_item">
+          <text class="code_title">请填写验证码更新数据</text>
+          <view class="codeing">
+          <input id="vrcode" class="code_input" placeholder="请正确输入验证码" bindinput="getVrcode"/>
+          <image class="show_code" src="{{imgcode}}" bindtap="codeGet" ></image>
+          </view>
+          <button  class="code_title button-btn"  hover-class="btn-hover" bindtap="getScore">
+        确定
+      </button>
+        </view>
+      </block>
+    </view>
+  </view>
+</template>
+<!-- 输入体测密码 -->
+<template name="tcPasswd">
+  <view class="code" id="getcode" wx:if="{{!passwdExist}}"  >
+    <view class="code_box">
+      <image class="code_close" id="close-code" src="/images/common/clear.png" bindtap="hideInput"></image>
+      <block >
+        <view class="code_item">
+          <text class="code_title">请输入你的公体密码</text>
+          <view class="codeing">
+          <input id="vrcode" class="code_input" placeholder="身份证出生年月加日期共8位" bindinput="getPasswd"/>
+          </view>
+          <button  class="code_title button-btn"  hover-class="btn-hover" bindtap="getScore">
+        确定
+      </button>
+        </view>
+      </block>
+    </view>
+  </view>
+</template>

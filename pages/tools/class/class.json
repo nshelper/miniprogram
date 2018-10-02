@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "学生课表",
+  "enablePullDownRefresh": false,
+  "navigationBarBackgroundColor": "#99CCFF",
+  "navigationBarTextStyle":"white"
+}

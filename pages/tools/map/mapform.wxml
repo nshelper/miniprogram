@@ -1,0 +1,27 @@
+<view class="form" >
+  <image bindtap="backPage" class="close" src="/images/common/close.png"></image>
+  <radio-group class="radio-title" bindchange="radioCampus">
+  <label  wx:for="{{radioFirst}}" wx:key="{{this}}">
+    <radio value="{{item.value}}" color="rgba(253,66,3,.9)" checked="{{item.checked}}"/>{{item.name}}
+  </label>
+</radio-group>
+<view>1.选择分类</view>
+  <radio-group class="radio-type" bindchange="radioChange">
+  <label class="type-item" wx:for="{{radioSecond}}" wx:key="{{this}}">
+    <radio  value="{{item.value}}" color="rgba(253,66,3,.9)" checked="{{item.checked}}"/>{{item.name}}
+  </label>
+</radio-group>
+
+<view>2.选择位置</view>
+	 <!-- <view wx-if="{{position}}" class="position">
+	经度:{{position.longitude}}维度:{{position.latitude}}
+	</view> -->
+
+	<view  class="select-position {{position?'select-focus':''}}" bindtap="choosePos">{{positionName}}</view>
+
+<view>3.标记记名</view>
+  <input bindinput="setContent" type="text" maxlength="9" placeholder="请正确输入标记点的名字"></input>
+  <button class="bottom" bindtap="submit">确定提交数据</button>
+ 
+ 
+  </view>

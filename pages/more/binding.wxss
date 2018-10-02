@@ -1,0 +1,90 @@
+/* 认证 */
+.binding {
+  padding: 60rpx;
+}
+.form-one,
+.form-two {
+  margin-top: 10%;
+}
+
+/* 表单组 */
+.input-group__item {
+  position: relative;
+}
+.input-group__input {
+  height: 80rpx;
+  margin-bottom: 45rpx;
+  padding: 0 80rpx 0 30rpx;
+  font-size: 13pt;
+  border: solid 1rpx #ddd;
+  border-radius: 5rpx;
+  z-index: 8;
+}
+.input-group__r-icon {
+  position: absolute;
+  top: 20rpx;
+  right: 30rpx;
+  width: 42rpx;
+  height: 42rpx;
+  z-index: 9;
+}
+.input-active {
+  border-color: #616161;
+}
+.input-placeholder {
+  color: #ddd;
+}
+.input-error {
+  border-color: #ff0000;
+}
+
+/* 按钮 */
+.input-group__next,
+.succeed__rebind {
+  margin-top: 120rpx;
+  color: #fff;
+  background-color: #616161;
+}
+.input-group__cancel {
+  margin-top: 60rpx;
+}
+
+.input-group__cancel--hover {
+  color: #616161;
+  border: 1px solid #616161;
+}
+
+/* 重置 */
+button[plain] {
+  color: #eee;
+  border: 1px solid #eee;
+}
+
+/* 认证成功 */
+.succeed__item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 30rpx 0;
+  font-size: 13pt;
+  font-weight: bold;
+  border-bottom: solid 1rpx #eee;
+}
+.succeed__state {
+  width: 74rpx;
+  height: 74rpx;
+}
+
+/* 动画 */
+@keyframes slideIn {
+  from {
+    transform: translateX(1000rpx);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+.animation-slideIn {
+  animation: 0.3s ease-in slideIn;
+}

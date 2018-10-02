@@ -1,0 +1,26 @@
+<!-- 导入模板 -->
+
+<import src="/template/list/list.wxml" />
+<import src="/template/placeholder/placeholder.wxml" />
+
+<view class="query">
+
+
+  <view class="query-list">
+    <block wx:for="{{bookList}}" wx:key="{{item.code}}">
+     <view class="list-book" >
+      <view  class="list-book__borrowing">
+      <text class="list-book__place">{{book}}</text>
+       <text class="list-book__place">{{item.name}}</text>
+       <text class="list-book__place">{{item.tag?item.tag:'暂无'}}</text>
+       <text class="list-book__place">{{item.status?item.status:'暂无'}}</text>
+      </view>
+    </view>
+    </block>
+    <template wx:if="{{!bookList.length}}" is="placeholder-basic" data="{{bg:'/images/placeholder/bg_book.png',text:info}}" />
+  </view>
+  <view wx:if="{{bookList.length}}" class="query-list__foot">
+    <text class="query-list__tip">已显示全部</text>
+  </view>
+
+</view>

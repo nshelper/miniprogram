@@ -1,0 +1,35 @@
+<!-- 导入模板 -->
+<import src="/template/card/card.wxml" />
+<import src="/template/getcode/getcode.wxml" />
+
+
+<!-- 成绩查询 -->
+<view class="score">
+  <!-- 成绩卡片 -->
+  <template is="card-score" data="{{ list: scoreList[index],index:index,selectTerm:selectTerm,scoreAd:scoreAd}}" />
+  <!-- getcode -->
+  <!--<template is="getcode" data="{{...help,imgcode:imgcode}}" /> -->
+</view>
+
+<view wx:if="{{detailStatus}}" class="score-detail" id="score-detail" bindtap="hideDetail">
+  <view class="score-detail__box">
+    <view class="score-detail__content">
+      <view class="score-detail__item">
+        <text class="score-detail__key">课程</text>
+        <text class="score-detail__value">{{scoreDetail.course}}</text>
+      </view>
+      <view class="score-detail__item">
+        <text class="score-detail__key">学分</text>
+        <text class="score-detail__value">{{scoreDetail.credit || '-'}}</text>
+      </view>
+      <view class="score-detail__item">
+        <text class="score-detail__key">类型</text>
+        <text class="score-detail__value">{{scoreDetail.attributes || '-'}}</text>
+      </view>
+      <view class="score-detail__item">
+        <text class="score-detail__key">分数</text>
+        <text class="score-detail__value">{{scoreDetail.score || '-'}}</text>
+      </view>
+    </view>
+  </view>
+</view>

@@ -1,0 +1,60 @@
+.classroom {
+  padding: 45rpx;
+}
+.classroom-form__item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 15rpx;
+  border-bottom: solid 1rpx #eee;
+}
+.classroom-form__picker {
+  flex: 1;
+}
+.classroom-form__field {
+  padding: 45rpx 0;
+}
+.classroom-form__r-icon {
+  width: 64rpx;
+  height: 64rpx;
+  margin-left: 45rpx;
+}
+.classroom-form__label {
+  margin-right: 30rpx;
+  font-size: 13pt;
+  font-weight: bold;
+  color: #000;
+}
+.classroom-form__value {
+  margin: 0 15rpx;
+  padding: 10rpx 20rpx;
+  font-size: 11pt;
+  font-weight: 500;
+  color: #fff;
+  background-color: #0099ff;
+  border-radius: 50rpx;
+}
+
+/* 提交 */
+.classroom-form__submit {
+  margin-top: 120rpx;
+  color: #fff;
+  background-color: #0099ff;
+}
+
+/* 结果页面 */
+.classroom-list__rooms {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 45rpx 0;
+  border-top: solid 1rpx #eee;
+}
+.classroom-list__room {
+  box-sizing: border-box;
+  width: 25%;
+  margin: 15rpx 0;
+  padding: 0 5rpx;
+  font-size: 11pt;
+  font-weight: bold;
+  color: #000;
+}

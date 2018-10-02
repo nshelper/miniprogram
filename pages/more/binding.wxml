@@ -1,0 +1,59 @@
+<!-- 导入模板 -->
+<import src="/template/help/help.wxml" />
+<import src="/template/tip/tip.wxml" />
+
+<!-- 绑定 -->
+<view class="binding">
+
+  <!-- 第一步 -->
+  <view class="step-one animation-slideIn {{step !== 1 ? 'animation-slideOut' : ''}}" wx:if="{{step === 1}}">
+    <view class="form-one">
+      <!-- 表单组 -->
+      <view class="input-group">
+        <!-- 学号 -->
+        <view class="input-group__item">
+          <input class="input-group__input {{studentIdFocus ? 'input-active' : ''}}" id="studentId" value="{{studentId}}" type="number"
+            maxlength="11" confirm-type="done" auto-focus="true" placeholder="学号" bindfocus="inputFocus" bindblur="inputBlur"
+            bindinput="keyInput"></input>
+          <image class="input-group__r-icon" src="/images/bind/scan.png" ></image>
+        </view>
+      </view>
+      <!-- tip -->
+      <template is="tip-basic" data="{{text: '学号：师大人的唯一通行证！默认11位'}}" />
+      <!-- 按钮 -->
+      <button class="input-group__next" open-type="getUserInfo" bindtap="navigateNext">下一步</button>
+      <button class="input-group__cancel" plain="true" hover-class="input-group__cancel--hover" bindtap="navigateCancel">暂不认证</button>
+    </view>
+  </view>
+
+  <!-- 第二步 -->
+  <view class="step-two animation-slideIn" wx:if="{{step === 2}}">
+    <view class="form-two">
+      <!-- 表单组 -->
+      <view class="input-group">
+        <!-- 教务处密码 -->
+        <view class="input-group__item">
+          <input class="input-group__input {{jwcPassWordFocus ? 'input-active' : ''}} {{jwcPassWordErr ? '' : 'input-error'}}" id="jwcPassWord"
+            type="password" value="" confirm-type="done" placeholder="信息门户密码" bindfocus="inputFocus"
+            bindblur="inputBlur" bindinput="keyInput"></input>
+        </view>
+      </view>
+      <!-- tip -->
+      <template is="tip-basic" data="{{text: '即将完成账号绑定, ', help: '需要帮助?'}}" />
+      <!-- 按钮 -->
+      <button class="input-group__next" bindtap="bind">开始绑定</button>
+      <button class="input-group__cancel" plain="true" hover-class="input-group__cancel--hover" bindtap="navigatePre">上一步</button>
+    </view>
+    <!-- 帮助 -->
+    <template is="help" data="{{...help}}" />
+  </view>
+
+  <!-- 认证成功 -->
+  <view class="succeed animation-slideIn" wx:if="{{step === 3}}">
+    <view class="succeed__item">
+      <text class="succeed__jwc">信息门户账户</text>
+      <image class="succeed__state" src="/images/common/succeed.png"></image>
+    </view>
+    <button class="succeed__rebind" bindtap="rebind">重新绑定</button>
+  </view>
+</view>

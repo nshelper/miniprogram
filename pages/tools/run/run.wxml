@@ -1,0 +1,37 @@
+<!--pages/tools/run/run.wxml-->
+<!-- 导入模板 -->
+<import src="/template/placeholder/placeholder.wxml" />
+
+  <view class="run-score">
+    <view class="run-score__head">
+      <text class="run-score__title">{{title}}</text>
+    </view>
+    
+     
+     <block wx:if="{{list}}"> 
+     <view  class="run-score__box">       
+        <block wx:if="{{userStep.step}}">
+          <view   class="run-score__item" >
+            <text class="run-score_info1">#</text>
+            <image class=" list-avatar__avatar" src="{{userStep.avatarUrl}}"></image>
+            <text class="run-score_info3">{{userStep.nickName}}</text>
+            <text class="run-score_info3 {{userStep.step<=10000 ? 'text_blue' : 'text_red'}}">{{userStep.step}}</text>
+          </view>
+        </block>
+        <block wx:if="{{steplist.length>1}}" wx:for="{{steplist}}" wx:key="id">
+           <view class="run-score__item" >
+            <text class="run-score_info1">{{index+1}}</text>
+            <image class=" list-avatar__avatar" src="{{item.avatarUrl}}"></image>
+            <text class="run-score_info3">{{item.nickName}}</text>
+            <text class="run-score_info3 {{item.step<=10000 ? 'text_blue' : 'text_red'}}">{{item.step}}</text>
+           </view>
+            </block>
+         
+     </view>
+     </block>
+    
+      <block wx:if="{{!list}}">
+        <template is="placeholder-fullpage" data="{{bg: '/images/placeholder/bg_no_data.png', text: '暂无信息'}}" />
+      </block>
+    
+  </view>

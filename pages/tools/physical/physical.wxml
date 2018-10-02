@@ -1,0 +1,23 @@
+<!-- 导入模板 -->
+<import src="/template/placeholder/placeholder.wxml" />
+<import src="/template/list/list.wxml" />
+<import src="/template/getcode/getcode.wxml" />
+<import src="/template/floor/floor.wxml" />
+
+<!-- 体测成绩 -->
+<view class="">
+  <block wx:if="{{!scoreList.err}}" wx:key="{{this}}">
+   <template is="tcPasswd" data="{{passwdExist:passwdExist}}" />
+    <template is="list-physical" data="{{sportStatus:sportStatus,data0:scoreList.data0,className:scoreList.className,data1:scoreList.data1,stuName:scoreList.stuName}}" />
+  </block>
+
+  <!-- 暂无 -->
+  <block wx:if="{{scoreList.err}}">
+     <template is="placeholder-fullpage" data="{{bg:'/images/placeholder/bg_no_data.png'}}" /> 
+  </block>
+  <view class="floor">
+    <ad class="page_ad" unit-id="adunit-88d12390776a06e3"></ad>
+  </view>
+  <!-- 底部版权 -->
+  <template is="floor" />
+</view>

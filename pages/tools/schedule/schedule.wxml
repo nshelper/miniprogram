@@ -1,0 +1,39 @@
+<!-- 导入模板 -->
+<import src="/template/placeholder/placeholder.wxml" />
+<view class="schedule">
+
+ <view class="schedule__head">
+   <view class="schedule__ltitle {{!overnum?'schedule__unavailable':'schedule__available'}}">{{overnum}}</view>
+   <view class="schedule__title {{accountTotal<=2 ? 'ltitle_red' : ''}}"><image class="schedule-title"  src="{{overnum?'/images/more/bus.png':'/images/more/nobus.png'}}"></image></view>
+ </view>
+ 
+<view class="schedule-second">
+ <view class="schedule__cells">
+    <view class="schedule__cell" bindtap="select1" >
+      <view class="schedule-score_info4  ">
+          <view class="schedule_cell_title ">
+          赛罕校区
+             <view class="schedule_border_before {{select ?'':'schedule_border_after'}}"></view>
+          </view>
+      </view> 
+          <view class="schedule_info2"><image class="schedule-score__ic-share {{select ?'rotateRight':'rotateLeft'}}"  src="/images/common/return.png"></image></view> 
+          <view class="schedule-score_info4 ">
+              <view class="schedule_cell_title"  >
+              盛乐校区
+                 <view class="schedule_border_before {{select ?'schedule_border_after':''}}"></view>
+              </view>
+          </view> 
+    </view>
+ </view>
+
+ <view class="schedule__box">
+    <block wx:if="{{zone}}" wx:for="{{zone[select]}}" wx:key="saihan">
+      <view class="schedule__item {{index+1<=8-overnum?'ltitle_gray':'ltitle_green'}}">
+          <text class="schedule-score_info4">第{{index +1}}趟</text>
+          <text class="schedule-score_info4">{{item.hour}}：{{item.minute==0?'00':item.minute}}</text>
+      </view>
+    </block>
+ </view>
+
+</view>
+</view>

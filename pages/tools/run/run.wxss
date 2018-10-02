@@ -1,0 +1,127 @@
+/* pages/tools/run/run.wxss */
+.list-avatar__avatar {
+  width: 100rpx;
+  height: 100rpx;
+  border-radius: 50%;
+  background-color: #eee;
+}
+/* 运动卡片 */
+.run-score {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 30rpx;
+  background-color: #fff;
+  border-radius: 4rpx;
+  overflow: hidden;
+}
+.text_red {
+  color: red;
+}
+.text_blue {
+  color: #0731d1;
+}
+.run-score__head {
+  display: flex;
+  padding-bottom: 30rpx;
+  border-bottom: solid 1rpx #eee;
+}
+.run-score__title {
+  
+  margin: 15rpx auto;
+  font-size: 18pt;
+  font-weight: bold;
+  color: #000;
+}
+.run-score__user-info {
+  margin-top: 15rpx;
+  font-size: 12pt;
+  color: #999;
+}
+.run-score__box {
+  min-height: 520rpx;
+}
+.run-score__item {
+  box-sizing: border-box;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 10rpx 40rpx;
+  padding: 30rpx 0;
+  border-bottom: solid 1rpx #eee;
+}
+.run-score__mark {
+  margin-left: 45rpx;
+}
+.run-score__share {
+  display: flex;
+  align-items: center;
+  margin: 0;
+  padding: 0;
+  border: none;
+  outline: none;
+  background-color: transparent;
+}
+
+/* reset button */
+button::after {
+  content: '';
+  width: 0;
+  height: 0;
+}
+.run-score__ic-share {
+  width: 45rpx;
+  height: 45rpx;
+}
+.run-score_term {
+  display: flex;
+  font-size: 12pt;
+  font-weight: bold;
+  color: #e70e4c;
+  margin:30rpx auto;
+  border-bottom: solid 1rpx #e70e4c;
+  text-align: center;
+}
+.run-score_info4{
+  width:40%;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  font-size: 13pt;
+  font-weight: bold;
+  color: #434748;
+  text-align: center;
+}
+.run-score_info3{
+  width:30%;
+  font-size: 13pt;
+  font-weight: bold;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  text-align: center;
+}
+.run-score_info2{
+  width:20%;
+  font-size: 10pt;
+  font-weight: bold;
+  color: #434748;
+  text-align: center;
+}
+.run-score_info1{
+  width:10%;
+  font-size: 13pt;
+  font-weight: bold;
+  color: #434748;
+  text-align: center;
+}
+.note2_item{
+    display: block;
+    font-size:28rpx;
+    color:#000000;
+    line-height: 40rpx;
+    height: 120rpx;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow:ellipsis;
+}
