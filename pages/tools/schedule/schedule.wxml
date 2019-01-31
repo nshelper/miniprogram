@@ -1,6 +1,7 @@
 <!-- 导入模板 -->
 <import src="/template/placeholder/placeholder.wxml" />
-<view class="schedule">
+<nav-bar navbar-data='{{nvabarData}}'></nav-bar>
+<view class="schedule" style='margin-top: {{height}}px'>
 
  <view class="schedule__head">
    <view class="schedule__ltitle {{!overnum?'schedule__unavailable':'schedule__available'}}">{{overnum}}</view>

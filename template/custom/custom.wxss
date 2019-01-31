@@ -1,0 +1,38 @@
+.custom_block{
+  height: 150rpx;
+  display: block;
+  /* background-color: #99CCFF; */
+  position: relative;
+  top:0;
+  width: 100%;
+  z-index: 1;
+}
+.custom_header{
+  height: 150rpx;
+  background-color: transparent;
+  display: block;
+  /* background-color: #99CCFF; */
+  position: fixed;
+  top:0;
+  width: 100%;
+  z-index: 2;
+}
+.custom_header .button{
+  background-color: rgba(255,255,255,0.5);
+  position: absolute;
+  top:54rpx;
+  left:30rpx;
+  width:120rpx;
+  height: 64rpx;
+  border-radius: 34rpx;
+  overflow: hidden;
+  text-align: center;
+  line-height: 64rpx;
+  font-size: 30rpx;
+  border:1px solid rgba(255,255,255,0.3);
+  box-sizing: border-box;
+  z-index: 9;
+}
+.custom_header .button-focus{
+   background-color: rgba(38,38,38,0.3);
+}

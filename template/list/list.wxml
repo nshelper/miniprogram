@@ -45,30 +45,6 @@
   </view>
 </template>
 
-<!-- 课表列表 -->
-<template name="list-course">
-  <view class="list-course">
-    <!-- 分类头部 -->
-    <template is="head-classify" data="{{title: '今日课程'}}" />
-    <!-- 列表项 -->
-    <view wx:if="{{item.current}}" class="list-course__item" wx:for="{{courses}}" wx:key="{{item.name}}">
-      <view class="list-course__section">{{item.time}}</view>
-      <view class="list-course__info">
-        <view class="list-course__name">{{item.name}}</view>
-        <view class="list-course__place">{{item.place}}</view>
-      </view>
-      <view wx:if="{{item.time === '1-2'}}" class="list-course__time">08:00</view>
-      <view wx:if="{{item.time === '3-4'}}" class="list-course__time">10:10</view>
-      <view wx:if="{{item.time === '5-6'}}" class="list-course__time">02:30</view>
-      <view wx:if="{{item.time === '7-8'}}" class="list-course__time">04:30</view>
-      <view wx:if="{{item.time === '9-10'}}" class="list-course__time">07:00</view>
-    </view>
-    <!-- 暂无课程 -->
-    <template wx:if="{{todayHasCourse === false}}" is="placeholder-basic" data="{{text: '暂无课程', bg: '/images/placeholder/bg_no_data.png'}}"
-    />
-  </view>
-</template>
-
 <!-- 文章列表 -->
 <template name="list-article">
   <navigator class="list-article" url="news_details?classify={{classify}}&id={{_id}}">
@@ -104,22 +80,20 @@
         <view  class="list-physical__head" >
           <text>{{stuName}}</text>
         </view> 
-        <view class="list-physical__item" wx:for="{{data1}}" wx:key="subName">
-          <text>{{item.subName}}</text>
-          <text>{{item.subScore}}</text>
-          <text>{{item.subSingle}}</text>
-          <text>{{item.subAssess}}</text>
+        <view class="list-physical__item" wx:for="{{sportsDetail}}" wx:key="subName">
+          <text>{{item.name}}</text>
+          <text>{{item.score}}</text>
+          <text>{{item.single}}</text>
+          <text>{{item.assess}}</text>
         </view>
-
       </view> 
       <view wx:if="{{sportStatus}}" class="list-physical">
         <view  class="list-physical__head" >
           <text>{{className}}</text>
         </view>
-
-        <view wx:if="{{item.subject}}" class="list-physical__item" wx:for="{{data0}}" wx:key="subject">
-          <text>{{item.subject}}</text>
-          <text>{{item.score}}</text>
+        <view  class="list-physical__item" wx:for="{{classDetail}}" wx:for-item="each" wx:key="subject">
+          <text>{{each.item}}</text>
+          <text>{{each.value}}</text>
         </view>
       </view>  
   </view>

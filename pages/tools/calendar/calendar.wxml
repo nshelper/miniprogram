@@ -1,10 +1,8 @@
 <!-- 导入模板 -->
 <import src="/template/placeholder/placeholder.wxml" />
+<nav-bar navbar-data='{{nvabarData}}'></nav-bar>
 <!-- 校历 -->
-<view class="calendar">
-  <view class="calendar__head">
-    <text class="calendar__weekly">{{currentWeekly}}</text>
-  </view>
+<view class="calendar" style='margin-top: {{height}}px'>
 
   <view class="calendar__main">
     <image class="calendar__image" src="{{calendarImage}}" bindtap="previewImage"></image>

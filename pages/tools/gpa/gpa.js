@@ -24,7 +24,12 @@ Page({
     electiveStatus:false,
     lastContent:"",
     lastContents: ["活捉神人一枚，请问可以抱大腿么", "两个字，优秀", "革命尚未成功，同志仍需努力", "大学么，大概学学就成"],
-    bgList: ["/images/more/bg1.png","/images/more/bg.png"]
+    bgList: ["/images/more/bg1.png","/images/more/bg.png"],
+    nvabarData: {
+      showCapsule: 1,
+      title: '',
+    },
+    height: app.globalData.height * 2 + 20,
   },
   /**
    * 生命周期函数--监听页面加载
@@ -74,12 +79,7 @@ Page({
         }
       })
     }
-
-
-
-
   },
-
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
@@ -276,8 +276,6 @@ Page({
     tempNum = parseFloat(tempNum).toFixed(3);
     tempTotal = i / tempbb;
     tempTotal = parseFloat(tempTotal).toFixed(3);
-    
-
     //动画
     let n1 = new NumberAnimate({
       from: tempTotal,
@@ -293,62 +291,8 @@ Page({
         //完成了
       }
     });
-    /*
-    this.setData({
-      accountNum: tempNum,
-      accountTotal: tempTotal
-    });
-    */
     this.rankUser(tempTotal);
     // console.log('GPA:',tempTotal);
-  },
-  //课程
-  courseInput: function (e) {
-    this.setData({
-      course: e.detail.value
-    });
-  },
-  //学分
-  creditInput: function (e) {
-    this.setData({
-      credit: e.detail.value
-    })
-  },
-  //成绩
-  scoreInput: function (e) {
-    this.setData({
-      score: e.detail.value
-    })
-  },
-  caculateNew:function(){
-    var that=this
-    this.setData({
-      buttonLoading: true
-    });
-    var course=this.data.course;
-    var credit = this.data.credit;
-    var score = this.data.score;
-    console.log(course,credit,score);
-    if(!isNaN(credit)&&!isNaN(score)&&credit&&score){
-    
-    var required = that.data.requiredInfo;
-    required.unshift({course:course,credit:credit,score:score});
-    that.caculateTotal(required);
-    that.setData({
-      requiredInfo: required,
-      buttonLoading: false
-    });
-    }else{
-      wx.showToast({
-        title: '请输入数字',
-        image: '/images/common/fail.png',
-        duration: 2000
-      });
-      that.setData({
-        buttonLoading: false
-      });
-    
-    }
   },
   //  图片缓存本地的方法
   getImageInfo: function (url) {   

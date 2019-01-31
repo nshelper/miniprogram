@@ -1,21 +1,44 @@
-//app.js
+ //app.js
 App({
   // 辅助工具
   // util: require('./utils/util'),
   // 版本号
-  version: 'v1.3.4',
+  version: 'v1.3.91',
   // 缓存数据
   store: {},
+  //自定义插件
+  globalData: {
+    share: false,  // 分享默认为false
+    height: 0,
+  },
 
 
   // API
-   api: 'https://lab.zqyyh.com',
-  //  api: 'http://localhost:8081',
-  //  api:'https://lab.daybreak.world/',
+  
+  api: 'http://localhost:8888',
 
-  onLaunch: function () {
+
+  onShow:function(options){
+
+  },
+
+  onLaunch: function (options) {
+    // console.log(options)
+    // 判断是否由分享进入小程序
+    if (options.scene == 1007 || options.scene == 1008) {
+      this.globalData.share = true
+    } else {
+      this.globalData.share = false
+    };
+    //获取设备顶部窗口的高度（不同设备窗口高度不一样，根据这个来设置自定义导航栏的高度）
+    wx.getSystemInfo({
+      success: (res) => {
+        this.globalData.height = res.statusBarHeight
+      }
+    })
     // 尝试读取storage，并更新store
     try {
+      this.checkUpdate()
       var storageInfo = wx.getStorageInfoSync();
 
       // console.log(storageInfo);
@@ -80,8 +103,6 @@ App({
       }
     });
   },
-
-
   // 用户登录
   login: function () {
     wx.login({
@@ -143,7 +164,6 @@ App({
       });
     }
   },
-
   // 更新store和storage
   setStore: function (key, value) {
     if (!key) {
@@ -154,5 +174,21 @@ App({
       key: key,
       data: value
     });
+  },
+  //小程序版本更新检查
+  checkUpdate(){
+    const updateManager = wx.getUpdateManager()
+    updateManager.onUpdateReady(function () {
+      wx.showModal({
+        title: '更新提示',
+        content: '客户端发现更新,是否重启应用？',
+        success: function (res) {
+          if (res.confirm) {
+            // 新的版本已经下载好，调用 applyUpdate 应用新版本并重启
+            updateManager.applyUpdate()
+          }
+        }
+      })
+    })
   }
 });

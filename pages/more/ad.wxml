@@ -1,5 +1,6 @@
 <!--pages/more/ad.wxml-->
-<view class="cells">
+<nav-bar navbar-data='{{nvabarData}}'></nav-bar>
+<view class="cells" style='margin-top: {{height}}px'>
   <block wx:for="{{options}}" wx:key="{{this}}">
     <view class="cell">
     <view class="cell_text">{{item.name}}</view>

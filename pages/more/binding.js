@@ -2,12 +2,18 @@ var app = getApp();
 
 Page({
   data: {
+    nvabarData: {
+      showCapsule: 1,
+      title: '',
+    },
+    height: app.globalData.height * 2 + 20,
     studentId: '',
     jwcPassWord: '',
     studentIdFocus: false,
     jwcPassWordFocus: false,
     jwcPassWordErr: true,
     step: 1,
+    loading:false,
     help: {
       helpStatus: false,
       faqList: [
@@ -90,8 +96,7 @@ Page({
   // 下一步
   navigateNext: function() {
     var studentId = this.data.studentId;
-
-    if (!studentId || studentId.length < 11) {
+    if (!studentId || studentId.length <10) {
       wx.showToast({
         title: '请正确填写学号',
         image: '/images/common/fail.png',
@@ -132,46 +137,46 @@ Page({
       });
     } else {
       // 加载中
-      wx.showLoading({
-        title: '正在绑定',
-        mask: true
+      // wx.showLoading({
+      //   title: '正在绑定',
+      //   mask: true
+      // });
+      this.setData({
+        loading:true
       });
       setTimeout(() => {app.login();},2000);
 
   //发起网络请求
       wx.request({
-        url: app.api + '/api/eipinfo',
+        url: app.api + '/api/eip',
         method: 'POST',
         header: {
           'content-type': 'application/x-www-form-urlencoded'
         },
         data: {
           user: studentId,
-          type: "xueji"
+          type: "info"
         },
         success: responseData => {
-          var _response = responseData.data;
-          // console.log(_response);
-          if (!_response.datas.err){
-            wx.hideLoading();
-            if (_response.datas.data.xueji){
-              var name = _response.datas.data.xueji.XM;
-              var tcPasswd = _response.datas.data.xueji.SFZH.slice(6, 14);
+          var _response = responseData.data.data;
+          if (!responseData.data.status){
+            this.setData({
+              loading:false
+            });
+            if (_response.xueji){
+              var name = _response.xueji.XM;
+              var tcPasswd = _response.xueji.SFZH.slice(6, 14);
               app.setStore("name", name);
               app.setStore("tcPasswd", tcPasswd);
             }
-            
-            // console.log(name, tcPasswd);
-            //原始方法
             app.store.bind = true;
             wx.setStorage({
               key: 'bind',
               data: true
             });
-            //函数方法
             app.setStore("user", studentId);
             app.setStore("jwpwd", jwcPassWord);
-            app.setStore("auth", _response.datas.auth);
+            app.setStore("auth", responseData.data.encrypt);
             
             wx.showToast({
               title: '绑定成功',
@@ -188,7 +193,10 @@ Page({
               });
             }, 2000);
           }else{
-            wx.hideLoading();
+            // wx.hideLoading();
+            this.setData({
+              loading: false
+            });
             wx.showToast({
               title: '账号不存在!',
               image: '/images/common/fail.png',

@@ -2,6 +2,11 @@ var app = getApp();
 
 Page({
   data: {
+    nvabarData: {
+      showCapsule: 1,
+      title: '',
+    },
+    height: app.globalData.height * 2 + 20,
     userInfo: {
       href: '/pages/more/user/user',
       avatar: '/images/more/avatar.png',

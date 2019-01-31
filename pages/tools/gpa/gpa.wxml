@@ -1,9 +1,10 @@
 <!-- 导入模板 -->
 <import src="/template/placeholder/placeholder.wxml" />
+<nav-bar navbar-data='{{nvabarData}}'></nav-bar>
 <!-- 画布 -->
-<canvas  canvas-id="notes" class="canvas_img" style="width:840px;height:1494px;"  bindtouchstart="start" bindtouchmove="move" bindtouchend="end" ></canvas> 
+<canvas  canvas-id="notes" class="canvas_img" style="width:840px;height:1494px;"  bindtouchstart="start" bindtouchmove="move" bindtouchend="end"></canvas> 
 <!-- 保存画布为jpg -->
-<view wx:if="{{imgStatus}}" class="canvas_bg "  id="hideCanvasImg" bindtap="hideCanvasImg">
+<view wx:if="{{imgStatus}}" class="canvas_bg "  id="hideCanvasImg" bindtap="hideCanvasImg" style='margin-top: {{height}}px'>
   <view  class="canvas_style_header animation-easeIn" >
       <view class="canvas_swiper">
           <image class="display_img" src="{{tempFilePath}}" /> 
@@ -15,7 +16,7 @@
 </view>
 <!-- 增加选修成绩 -->
 
-<view wx:if="{{electiveStatus}}" class="canvas_bg {{!electiveStatus?'animation-easeOut':''}} "  hover-class="animation-easeOut" id="hideAppendItem" bindtap="hideAppendItem">
+<view wx:if="{{electiveStatus}}" class="canvas_bg {{!electiveStatus?'animation-easeOut':''}} "  hover-class="animation-easeOut" id="hideAppendItem" bindtap="hideAppendItem" style='margin-top: {{height}}px'>
    <view class="append-box-title animation-easeIn" hover-stop-propagation>选泽你要增加的选修课</view>
     <view class="append-box animation-easeIn" hover-class="none"  hover-stop-propagation="false"  >
         <block wx:if="{{electiveInfo}}" wx:for="{{electiveInfo}}" wx:key="this">
@@ -30,7 +31,7 @@
         </view>
     </view>
 
-<view class="gpa">
+<view class="gpa" style='margin-top: {{height}}px'>
 
   <view class="gpa__head">
     <view class="gpa__title {{accountTotal<=2 ? 'ltitle_red' : ''}}">{{accountTotal}}</view>
@@ -39,14 +40,6 @@
   </view>
   
   <view class="gpa-change">
- 
-    <view class="gpa__item" >
-          <input class="card-score_info4" bindinput="courseInput" placeholder="课程"/>
-          <input class="card-score_info1" bindinput="creditInput" placeholder="学分" />
-          <input class="card-score_info2" bindinput="scoreInput" placeholder="成绩" />
-          <view class="card-score_info3"><button size="mini" loading="{{buttonLoading}}" type="primary" bindtap="caculateNew">增</button></view> 
-    </view>
-
     <view class="gpa__box">
     <block wx:if="{{requiredInfo}}" wx:for="{{requiredInfo}}" wx:key="course">
 
@@ -72,7 +65,7 @@
 <view class="floor animation-easeTop" wx:if="{{!imgStatus}}" >
 <view class="floor_option">
   <button class="floor_button" open-type="share">
-    <image bindtap="sharePage" src="/images/common/share.png"/>
+    <image  src="/images/common/share.png"/>
   </button>
   
 </view>

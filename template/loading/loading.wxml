@@ -1,0 +1,8 @@
+<template name="loading">
+  <view class="load_bg">
+    <view class="load_box">
+      <image class="load_icon" src="/images/loading.gif"></image>
+      <text class="load_title">{{title}}</text>
+    </view>
+  </view>
+</template>

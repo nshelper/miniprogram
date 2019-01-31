@@ -5,8 +5,14 @@ Page({
     sportStatus:true,
     scoreList: [],
     pullDownFlag: true,
+    reqFlag:false,
     passwdExist: true,
-    sportPass: ""
+    sportPass: "",
+    nvabarData: {
+      showCapsule: 1,
+      title: '',
+    },
+    height: app.globalData.height * 2 + 20,
   },
 
   onLoad: function() {
@@ -62,10 +68,13 @@ Page({
   getScore: function() {
     // 加载中
     let sportPass = this.data.sportPass;
+   this.setData({
+     reqFlag:true
+   })
     wx.showNavigationBarLoading();
 
     wx.request({
-      url: app.api + '/api/st',
+      url: app.api + '/api/sports',
       method: 'POST',
       header: {
         'content-type': 'application/x-www-form-urlencoded',
@@ -75,12 +84,11 @@ Page({
         pwd: sportPass   
       },
       success: requestRes => {
-        var _requestRes = requestRes.data;
-        // console.log(_requestRes);
-
-        if (_requestRes.err === false) {
+        var _requestRes = requestRes.data.data;
+        if (!requestRes.data.status) {
           this.setData({
             scoreList: _requestRes,
+            reqFlag:false,
             passwdExist: true
           });
           wx.showToast({
@@ -88,7 +96,7 @@ Page({
             icon: 'success',
             duration: 2000
           });
-          app.setStore("name", _requestRes.stuName);
+          app.setStore("name", _requestRes.name);
           app.setStore("tcPasswd", sportPass);
           app.setStore('physicalList', _requestRes);
         } else {
@@ -98,6 +106,7 @@ Page({
             duration: 2000
           });
           this.setData({
+            reqFlag: false,
             scoreList: null,
             passwdExist:false
           });

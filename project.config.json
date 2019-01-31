@@ -5,12 +5,13 @@
 		"es6": true,
 		"postcss": true,
 		"minified": true,
-		"newFeature": true
+		"newFeature": true,
+		"autoAudits": false
 	},
 	"compileType": "miniprogram",
-	"libVersion": "2.0.4",
+	"libVersion": "2.5.1",
 	"appid": "wx18b97eec31b6db56",
-	"projectname": "%E5%86%85%E5%B8%88%E5%8A%A9%E6%89%8B%E6%97%A7%E7%89%88%E6%9C%AC",
+	"projectname": "%E5%86%85%E5%B8%88%E5%8A%A9%E6%89%8BGo%E7%89%88%E6%9C%AC",
 	"condition": {
 		"search": {
 			"current": -1,

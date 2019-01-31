@@ -1,0 +1,31 @@
+<import src="/template/loading/loading.wxml"/>
+
+<nav-bar navbar-data='{{nvabarData}}'></nav-bar>
+<template wx:if="{{avatarStatus}}" is="loading" data="{{title:'loading'}}" />
+<view class="avatar_container" style='margin-top:{{height}}px'>
+  <view  class="avatar_canvas">
+    <image wx:if="{{!imagePath}}" bindtap="chooseImageToLocal" class="upload" src="/images/common/upImage.png" mode="aspectFit" lazy-load="false" binderror="" bindload=""> 
+    </image>
+    <view wx:if="{{!imagePath}}"  class="tips" hover-class="none" hover-stop-propagation="false">
+      点此上传图片
+    </view>
+    <canvas wx:if="{{imagePath}}" disable-scroll bindtouchstart="touchStart" bindtouchmove="touchMove" bindtouchend="touchEnd" canvas-id="avatar" style="width:600rpx;height:600rpx;"></canvas>
+  </view>
+
+  <scroll-view style="margin:0 auto;width:600rpx;" scroll-x="{{true}}" scroll-y="{{false}}"  
+     scroll-with-animation="{{true}}">
+    <view class="avatar_scroll" hover-class="none" hover-stop-propagation="false">
+        <block wx:for="{{items}}" wx:key="this" >
+            <view class="scroll_item" hover-class="none" hover-stop-propagation="false" data-Index="{{item}}" bindtap="selectHat">
+              <image class="item_image" src="{{item}}" mode="aspectFit" lazy-load="false">
+              </image>
+            </view> 
+        </block>
+    </view>
+  </scroll-view>
+  
+  <button bindtap="getUserAvatar"  class="avatar_botton">使用头像</button>
+  <button bindtap="chooseImageToLocal" class="avatar_botton">选择图片</button>
+  <button bindtap="saveCanvasToLocal" class="avatar_botton">保存图片</button>
+</view>
+

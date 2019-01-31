@@ -2,28 +2,35 @@
 <import src="/template/list/list.wxml" />
 <import src="/template/placeholder/placeholder.wxml" />
 <import src="/template/floor/floor.wxml" />
-
+<import src="/template/indexpage/indexpage.wxml" />
+<!-- 自定义广告组件 -->
+<template wx:if="{{index_ad}}" is="indexadvertising" data="{{countDown:countDown,indexBg:index_ad_bg,remark:index_ad_remark}}" />
+<!-- 首页导航栏背景 -->
+<view class="index_navbar" style="height: {{height+2}}px;opacity:{{opacity}};">
+  <view class="more" style="top: {{(height-20+44-30)/2}}px;">
+    <image bindtap="navigatetoBind" class="bind" mode='aspectFill' src="/images/more/user.png"/>
+    <view class="border_center" hover-class="none" hover-stop-propagation="false">
+    </view>
+    <button class="nav-share" open-type="share" hover-class="none"  wx:if='{{!share}}'>
+      <image src='/images/common/nav-share.png' mode='aspectFill' class='bind'></image>
+    </button>
+  </view>
+</view>
 <!-- index -->
-<view class="index">
+<view class="index" style='margin-top: {{height}}px'>
   <!-- 导航 -->
   <view class="main">
       <swiper indicator-dots="{{false}}"
-      autoplay="true" interval="3000" duration="1000" circular="true" class="swiper_head" >
+      autoplay="true" interval="4000" duration="1000" circular="true" class="swiper_head" >
       <block wx:for="{{headTool}}" wx:key="id" >
         <swiper-item>
           <navigator class="tool__item head_swiper" style="background-image:url({{item.path?item.path:randomImg}});" url="{{item.url}}">
-                    <view class="tool_bottom_linear" wx:if="{{item.title}}"></view>
-                    <view class="tool_bottom_line" wx:if="{{item.title}}">
-                        <view class="item_time_icon">
-                            <image src="/images/common/author.png"></image>
-                        </view>
-                        <view class="item_time_text">{{item.author}}</view>
-                        <view class="item_time_icon">
-                            <image src="/images/common/time.png"></image>
-                        </view>
-                        <view class="item_time_text">{{item.date}}</view>
-                    </view>
+                 <block  wx:if="{{item.title}}"> 
+                    <view class="tool_bottom_linear" ></view>
                     <view class="item_title" wx:if="{{item.title}}">{{item.title}}</view>
+                    <view class="item_author">{{item.author}}</view>
+                    <view class="item_date">{{item.date}}</view>
+                  </block>
                 </navigator>
         </swiper-item>
       </block>
@@ -45,7 +52,9 @@
                 <view class="secondText">赛尔卡余额:{{net.package_name?net.remain_bytes+"/"+net.bytes:"N/A"}}</view>
                 <image class="tool__icon" src="/images/tool/info.png"></image>
             </view>
-            <view class="model_title"> 今日课表 </view>
+            <view class="model_title"> 今日课表 
+                    <view wx:if="{{todayWeekend}}" class="weekend">( 第{{todayWeekend}}周 )</view>
+            </view>
             <view class="model_line"></view>
             <!-- 课表模块 -->
             <view  class="tool_class">
@@ -73,16 +82,17 @@
             </block>
             </view>
         </view>
-    <!--底部模块-->
-      <block wx:for="{{floorTool}}" wx:key="id">
-        <navigator class="tool__item" url="{{item.url}}" >
-          <image class="tool__icon" src="/images/tool/{{item.id}}.png"></image>
-        </navigator>
-      </block>
     <!-- 首页广告  wx:if="{{indexAd}}" -->
       <view  class="index_ad">
         <ad  unit-id="adunit-0cdff32eda6c135a"></ad>
       </view>
+    <!--底部模块-->
+      <block wx:for="{{floorTool}}" wx:key="id">
+        <navigator class="tool__item" hover-class="navigate_hover"  url="{{item.url}}" >
+          <image class="tool__icon" src="/images/tool/{{item.id}}.png"></image>
+        </navigator>
+      </block>
+
     <!-- 底部版权 -->
         <template is="floor" />
   </view>

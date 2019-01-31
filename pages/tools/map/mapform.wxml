@@ -1,4 +1,5 @@
-<view class="form" >
+<nav-bar navbar-data='{{nvabarData}}'></nav-bar>
+<view class="form"  style='margin-top: {{height}}px'>
   <image bindtap="backPage" class="close" src="/images/common/close.png"></image>
   <radio-group class="radio-title" bindchange="radioCampus">
   <label  wx:for="{{radioFirst}}" wx:key="{{this}}">

@@ -1,13 +1,18 @@
 /**app.wxss**/
-.container1 {
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: space-between;
-  padding: 200rpx 0;
-  box-sizing: border-box;
-} 
+pages {
+  position: relative;
+  z-index: 9999998;
+  background: #fff;
+}
+page {
+  font-family: 'Optima-Regular', 'PingFangTC-light';
+  -webkit-overflow-scrolling: touch;
+}
+::-webkit-scrollbar{
+  height: 0;
+  width: 0;
+  color: transparent;
+}
 @import "/template/card/card.wxss";
 @import "/template/head/head.wxss";
 @import "/template/list/list.wxss";
@@ -18,3 +23,6 @@
 @import "/template/details/details.wxss";
 @import "/template/bar/bar.wxss";
 @import "/template/floor/floor.wxss";
+@import "/template/loading/loading.wxss";
+@import "/template/indexpage/indexpage.wxss";
+@import "/template/custom/custom.wxss";

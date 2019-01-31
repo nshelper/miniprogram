@@ -11,7 +11,13 @@ Page({
     index:0,
     reqStatus:false,
     selectTerm:[],
-    scoreAd:true
+    scoreAd:true,
+    title: "获取成绩中",
+    nvabarData: {
+      showCapsule: 1,
+      title: '',
+    },
+    height: app.globalData.height * 2 + 20,
   },
 
   onLoad: function() {
@@ -60,32 +66,29 @@ Page({
 
     //发起网络请求
     wx.request({
-      url: app.api + '/api/eipinfo',
+      url: app.api + '/api/eip',
       method: 'POST',
       header: {
         //'content-type': 'application/json' // 默认值
-        // 'auth': app.store.auth,
+        'auth': app.store.auth,
         'content-type': 'application/x-www-form-urlencoded'
       },
       data:{
-        user: app.store.user,
+        // user: app.store.user,
         type:'score'
         //pwd: app.store.jwpwd,
         //session:this.data.session,
         //vrcode:this.data.vrcode
-
       },
       success: requestRes => {
-        var _requestRes = requestRes.data.datas;
+        var _requestRes = requestRes.data;
         // console.log(_requestRes);
-
         wx.hideLoading();
-        if (_requestRes.err ===false) {
+        if (!_requestRes.status) {
           // 更新视图
-          var _requestDatas = _requestRes.title.reverse();
+          var _requestDatas = _requestRes.data.reverse();
           var selectTerm= [];
           _requestDatas.forEach((each)=>{
-            //console.log(each);
             selectTerm.push(each.term);
           })
           this.setData({
@@ -98,11 +101,6 @@ Page({
           wx.hideNavigationBarLoading();
           wx.setNavigationBarTitle({
             title: '成绩查询'
-          });
-          wx.showToast({
-            title: '获取数据成功',
-            icon: "sucess",
-            duration: 2000
           });
         } else {
           wx.hideNavigationBarLoading();
@@ -141,8 +139,6 @@ Page({
   // 详情
   showDetail: function(e) {
     var data = e.currentTarget.dataset.score;
-    // console.log(data);
-
     // 更新视图
     this.setData({
       detailStatus: true,
@@ -228,10 +224,8 @@ Page({
     this.setData({
       index: e.detail.value
     });
+  },
+  move() {
+    //阻止遮罩穿透
   }
-
-
-
- 
-
 });

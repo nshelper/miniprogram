@@ -1,8 +1,11 @@
 <!--pages/tools/run/run.wxml-->
 <!-- 导入模板 -->
 <import src="/template/placeholder/placeholder.wxml" />
+<import src="/template/loading/loading.wxml"/>
+<nav-bar navbar-data='{{nvabarData}}'></nav-bar>
+<template wx:if="{{!list}}" is="loading" data="{{title:'loading'}}" />
 
-  <view class="run-score">
+  <view class="run-score" style='margin-top: {{height}}px'>
     <view class="run-score__head">
       <text class="run-score__title">{{title}}</text>
     </view>

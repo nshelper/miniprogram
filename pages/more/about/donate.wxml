@@ -1,7 +1,6 @@
 <import src="/template/head/head.wxml" />
-
-
-<view class="donate">
+<nav-bar navbar-data='{{nvabarData}}'></nav-bar>
+<view class="donate" style='margin-top: {{height}}px'>
   <view class="pay">
     <view class="pay__tip">扫二维码捐助我，请量力而行</view>
     <image wx:if="{{mode === 'wechatpay'}}" class="pay__qrcode pay__wechatpay-qrcode" src="/images/more/wechatpay.png"

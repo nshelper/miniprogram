@@ -12,8 +12,14 @@ Page({
     modelStatus: true,
     page:1,
     indexPage:1,
-    floor:{text:"点击查看下一页",status:true}
-  
+    floor:{text:"点击查看下一页",status:true},
+    loading:false,
+    title:"loading",
+    nvabarData: {
+      showCapsule: 1,
+      title: '',
+    },
+    height: app.globalData.height * 2 + 20,
   },
 
   onLoad: function() {
@@ -69,12 +75,16 @@ Page({
   // 获取信息
   searchBook: function(indexPage) {
     // 加载中
-    wx.showLoading({
-      title: '获取中',
-      mask: true
+    // 已添加自定义
+    // wx.showLoading({
+    //   title: '获取中',
+    //   mask: true
+    // });
+    this.setData({
+      loading:true
     });
     wx.request({
-      url: app.api + '/api/search',
+      url: app.api + '/api/library',
       method: 'GET',
       header: {
         'content-type': 'application/x-www-form-urlencoded',
@@ -87,40 +97,30 @@ Page({
       success: requestRes => {
         var _requestRes = requestRes.data;
          //console.log(requestRes);
-
-        if (_requestRes.err === false) {
-          console.log(_requestRes);
-          if (_requestRes.data.length>0){
+        if (!_requestRes.status && _requestRes.data ) {
+          if (_requestRes.data.length > 0 ){
             var borrowingList = this.data.borrowingList;
             var results = borrowingList.concat(_requestRes.data);
             console.log(borrowingList);
             this.setData({
-              borrowingList: results
+              borrowingList: results,
+              loading: false
             });
-            wx.hideLoading();
-            wx.showToast({
-              title: '获取成功',
-              icon: 'success',
-              duration: 2000
-            });
-
           }else{
             this.setData({
-              floor: { text: "已获取所有数据", status: false }
+              floor: { text: "已获取所有数据", status: false },
+              loading: false
             })
           }
       
         } else {
-          wx.hideLoading();
-          wx.showToast({
-            title: '不存在图书',
-            image: '/images/common/fail.png',
-            duration: 2000
-          });
+          this.setData({
+            floor: { text: "已获取所有数据", status: false },
+            loading: false
+          })
         }
       },
       fail: () => {
-        wx.hideLoading();
         wx.showToast({
           title: '未知错误',
           image: '/images/common/fail.png',
@@ -128,19 +128,22 @@ Page({
         });
       },
       complete: () => {
-        wx.hideLoading();
+
       }
     });
   },
   //首次获取数据
   indexSearch: function (indexPage) {
     // 加载中
-    wx.showLoading({
-      title: '获取中',
-      mask: true
+    // wx.showLoading({
+    //   title: '获取中',
+    //   mask: true
+    // });
+    this.setData({
+      loading: true
     });
     wx.request({
-      url: app.api + '/api/search',
+      url: app.api + '/api/library',
       method: 'GET',
       header: {
         'content-type': 'application/x-www-form-urlencoded',
@@ -154,25 +157,24 @@ Page({
         var _requestRes = requestRes.data;
         //console.log(requestRes);
 
-        if (_requestRes.err === false) {
-          console.log(_requestRes);
-          if (_requestRes.data.length > 0) {
+        if (!_requestRes.status && _requestRes.data) {
+          if (_requestRes.data.length > 0 ) {
             this.setData({
               borrowingList: _requestRes.data,
               page: 1,
+              loading: false,
               floor: { text: "点击查看下一页", status: true }
             });
-            wx.hideLoading();
-            wx.showToast({
-              title: '获取成功',
-              icon: 'success',
-              duration: 2000
-            });
+            // wx.showToast({
+            //   title: '获取成功',
+            //   icon: 'success',
+            //   duration: 2000
+            // });
           }else{
-            wx.hideLoading();
             this.setData({
               borrowingList: [],
-              page: 1
+              page: 1,
+              loading: false
             });
             wx.showToast({
               title: '不存在图书',
@@ -185,7 +187,8 @@ Page({
           wx.hideLoading();
           this.setData({
             borrowingList: [],
-            page: 1
+            page: 1,
+            loading:false
           });
           wx.showToast({
             title: '不存在图书',
@@ -195,56 +198,15 @@ Page({
         }
       },
       fail: () => {
-        wx.hideLoading();
         wx.showToast({
           title: '未知错误',
           image: '/images/common/fail.png',
           duration: 2000
         });
-      },
-      complete: () => {
-        wx.hideLoading();
       }
     });
   },
-  //info
-  searchInfo: function () {
-    wx.request({
-      url: app.api + '/api/bookinfo',
-      method: 'GET',
-      header: {
-        'content-type': 'application/x-www-form-urlencoded',
-        Authorization: 'Bearer ' + app.store.token
-      },
-      data: {
-        book: this.data.book,
-        id:this.data.id
-      },
-      success: requestRes => {
-        var _requestRes = requestRes.data;
-        console.log(requestRes);
 
-        if (_requestRes.err === false) {
-          // console.log(_requestRes);
-          this.setData({
-            
-          });
-          
-        } 
-      },
-      fail: () => {
-        wx.hideLoading();
-        wx.showToast({
-          title: '未知错误',
-          image: '/images/common/fail.png',
-          duration: 2000
-        });
-      },
-      complete: () => {
-        wx.hideLoading();
-      }
-    });
-  },
 
   // 模态窗
   showDetail: function(e) {

@@ -7,8 +7,13 @@ Page({
       nickName: '',
       name: '',
       studentId: '',
-      dormitory: ''
+      dormitory: '',
     },
+    nvabarData: {
+      showCapsule: 1,
+      title: '',
+    },
+    height: app.globalData.height * 2 + 20,
     bind: false
   },
   onLoad: function() {

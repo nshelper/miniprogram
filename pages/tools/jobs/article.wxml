@@ -1,0 +1,40 @@
+<!-- 导入模板 -->
+<import src="/component/wxParse/wxParse.wxml" />
+<import src="/template/placeholder/placeholder.wxml" />
+<import src="/template/loading/loading.wxml"/>
+<nav-bar navbar-data='{{nvabarData}}'></nav-bar>
+<template wx:if="{{!article.nodes}}" is="loading" data="{{title:'loading'}}" />
+
+<view class="article_container" style='margin-top: {{height}}px'>
+  <block wx:if="{{content.content}}">
+    <view class="main">
+      <view class="header">
+        <view class="title">
+        <text class="title_text">{{content.title}}</text>
+        </view>
+        <view class="article_date">
+          <text class="date_text">{{content.author?content.author:'未知来源'}}</text>
+          <text class="date_text">{{content.date}}</text>
+          </view>
+      </view> 
+      <view class="content">
+      <view wx:if="{{article.nodes}}" class="article_text" >
+        <template  class="article_text" is="wxParse" data="{{wxParseData:article.nodes}}"/>
+      </view>  
+          <!-- <rich-text wx:if="{{content.content}}" class="article_text" nodes="{{content.content}}" ></rich-text>   -->
+
+          <view class="content_view">
+                <view class="count">阅读:  {{content.view?content.view:1}}</view>
+          </view>
+      </view>
+    </view>
+  </block>
+  <block wx:if="{{!content.content}}">
+      <view class="none_container">
+        <template is="placeholder-fullpage" data="{{bg: '/images/placeholder/bg_no_data.png', text: '暂无信息'}}" />
+      </view>
+  </block>
+ <view class="commit">
+  <ad  class="page_ad" unit-id="adunit-84a0932a2909b8fa"></ad>
+ </view>
+</view>

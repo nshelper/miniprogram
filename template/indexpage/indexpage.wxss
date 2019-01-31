@@ -1,0 +1,121 @@
+/* template/indexad/indexad.wxss */
+.indexad_container{
+    position: fixed;
+    top:0;
+    bottom:0;
+    right: 0;
+    left: 0;
+    background-color: rgba(0,0,0,0.2);
+    z-index:999;
+    animation: display 0.3s ease-in 1;
+}
+.indexad_container_out{
+    animation: hidden 1s linear 1;
+}
+@keyframes display{
+  from{opacity: 0;}
+  to{opacity: 1;}
+}
+@keyframes hidden{
+  from{opacity: 1;transform: translateY(0);}
+  to{opacity: 0;transform: translateY(-100%);}
+}
+.indexad_box{
+  width: 100%;
+  height: 80%;
+  background-repeat: no-repeat;
+  background-size: cover; 
+  position: relative;
+  overflow: hidden;
+}
+.indexad_box .box_desc{
+  text-align: center;
+  position: absolute;
+  font-size: 25rpx;
+  top:80rpx;
+  left: 30rpx;
+  width: 140rpx;
+  line-height: 40rpx;
+  color: 	#ffffff;
+  height: 40rpx;
+  background-color: rgba(116,116,116,.3);
+  border-radius:8rpx;
+}
+.indexad_box .box_content{
+    width: 100%;
+    height: 300rpx;
+    background-image: linear-gradient(0deg,rgba(0,0,0,.8),rgba(0,0,0,.6),rgba(0,0,0,0),rgba(0,0,0,0));
+    bottom: 0rpx;
+    position: absolute;
+    z-index:1;
+}
+.indexad_box .box_icon{
+  width: 35rpx;
+  height: 35rpx;
+  position: absolute;
+  bottom: 27rpx;
+  right: 40rpx;
+  filter: alpha(Opacity=80);
+  opacity: 0.8;
+  z-index: 2;
+}
+.indexad_box .box_text{
+  position: absolute;
+  bottom: 20rpx;
+  left: 30rpx;
+  font-weight: bold;
+  font-size: 35rpx;
+  width: 650rpx;
+  color: #ffffff;
+  filter: alpha(Opacity=80);
+  opacity: 0.8;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  z-index:2;
+}
+.indexad_floor{
+  width: 100%;
+  height: 20%;
+  background-color: #ffffff;
+  position: relative;
+}
+.indexad_floor .floor_skip{
+  font-size: 28rpx;
+  text-align: center;
+  line-height: 50rpx;
+  position: absolute;
+  bottom:22rpx;
+  right: 22rpx;
+  border-radius: 25rpx;
+  color: 	rgba(116,116,116,.7);
+  border:1px solid 	rgba(116,116,116,.7);
+  width:100rpx;
+  height: 50rpx;
+}
+.indexad_floor .floor_content{
+  font-size: 32rpx;
+  width: 400rpx;
+  margin:0 auto;
+  
+}
+.floor_content .content_logo{
+  display: block;
+  width: 300rpx;
+  height: 115.2rpx;
+  margin: 0rpx auto;
+  padding-top: 70rpx;
+}
+.floor_content .content_text{
+  margin-top: 12rpx;
+  font-size: 20rpx;
+  text-align: center;
+  letter-spacing: 1px;
+}
+.indexad_close{
+  position: absolute;
+  width: 70rpx;
+  height: 70rpx;
+  right: 0;
+  top: 0;
+}

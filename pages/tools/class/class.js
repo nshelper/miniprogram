@@ -12,12 +12,17 @@ Page({
     days:['周一','周二','周三','周四','周五','周六','周日'],
     nodes:[1,2,3,4,5,6,7,8,9,10],
     today:0,
-    allClass:[
-    ],
+    allClass:[ ],
     headerLeft:0,
     showStatus:false,
     detailItems:[],
-    headerStatus: true
+    headerStatus: true,
+    nvabarData: {
+      showCapsule: 1,
+      title: '',
+      color:"#99CCFF"
+    },
+    height: app.globalData.height * 2 + 20,
   },
 
   /**
@@ -155,22 +160,21 @@ Page({
   getClass: function(){
     var that =this
     wx.request({
-      url: app.api + '/api/eipinfo',
+      url: app.api + '/api/eip',
       method: 'POST',
       header: {
         //'content-type': 'application/json' // 默认值
-        // 'auth': app.store.auth,
+        'auth': app.store.auth,
         'content-type': 'application/x-www-form-urlencoded'
       },
       data: {
-        user: app.store.user,
+        // user: app.store.user,
         type: 'class_',
         date: that.data.date
-        // date: '2018-09-16'
       },
       success: requestRes=>{
-        let _requestRes = requestRes.data.datas
-        if (!_requestRes.err){
+        let _requestRes = requestRes.data
+        if (!_requestRes.status){
           let classInfo = _requestRes.data.kb
           // console.log(classInfo)
           let allClass=classList(classInfo)

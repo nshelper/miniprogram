@@ -4,7 +4,11 @@ Page({
   data: {
     calendarImage:'http://www.imnu.edu.cn/upload/2017-05/2017xiaoli.jpg',
       // 'http://struggler.qiniudn.com/2017xiaoli.jpg',
-    currentWeekly: '校历仅供参考',
+    nvabarData: {
+      showCapsule: 1, 
+      title: '校历仅供参考', 
+    },
+    height: app.globalData.height * 2+20 ,
   },
 
   onLoad: function() {

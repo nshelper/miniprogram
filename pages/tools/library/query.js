@@ -4,7 +4,12 @@ Page({
   data: {
     bookList: [],
     book:"",
-    info:"查找中"
+    info:"查找中",
+    nvabarData: {
+      showCapsule: 1,
+      title: '',
+    },
+    height: app.globalData.height * 2 + 20,
   },
 
   onLoad: function(option) {
@@ -22,7 +27,7 @@ Page({
   //info
   searchInfo: function (option) {
     wx.request({
-      url: app.api + '/api/bookstatus',
+      url: app.api + '/api/librarydetail',
       method: 'GET',
       header: {
         'content-type': 'application/x-www-form-urlencoded',
@@ -33,10 +38,8 @@ Page({
       },
       success: requestRes => {
         var _requestRes = requestRes.data;
-        //console.log(requestRes);
 
-        if (_requestRes.err === false) {
-          // console.log(_requestRes);
+        if (!_requestRes.status ) {
           this.setData({
             bookList: _requestRes.data
           });

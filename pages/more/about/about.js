@@ -2,7 +2,13 @@ var app = getApp();
 
 Page({
   data: {
-    version: ''
+    version: '',
+    nvabarData: {
+      showCapsule: 1,
+      title: '',
+      color:"#CCFFFF"
+    },
+    height: app.globalData.height * 2 + 20,
   },
   onLoad: function() {
     this.getVersion();

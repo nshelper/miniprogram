@@ -1,0 +1,31 @@
+.load_bg{
+  position: fixed;
+  top:0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(181,181,181,0);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 999;
+}
+.load_box{
+  width:120px;
+  height:120px;
+  background-color: rgba(23,23,23,.7);
+  border-radius: 12rpx;
+}
+.load_box .load_icon{
+  display: block;
+  margin: 25px auto 0rpx auto;
+  width:55px;
+  height: 55px;
+}
+.load_box .load_title{
+  display: block;
+  margin: 7px auto 10px auto;
+  color:#fff;
+  font-size: 10px;
+  text-align: center;
+}

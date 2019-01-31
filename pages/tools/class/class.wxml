@@ -1,5 +1,8 @@
 <!--pages/tools/class/class.wxml-->
-<view class="header">
+<import src="/template/loading/loading.wxml"/>
+<nav-bar navbar-data='{{nvabarData}}'></nav-bar>
+<template wx:if="{{!allClass.length}}" is="loading" data="{{title:'获取课表中'}}" />
+<view class="header" style='margin-top: {{height}}px'>
   <view class="options">
     <picker mode="date" value="{{date}}" start="1970-01-01" end="2038-01-01" bindchange="bindDateChange">
       <image src="/images/common/options.png"></image>

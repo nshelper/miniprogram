@@ -1,4 +1,5 @@
 // pages/map/mapform.js
+var app = getApp();
 import { post, get, upload } from '../../../utils/req.js'
 Page({
 
@@ -20,7 +21,12 @@ Page({
     campusType:2,
     longitude:"",
     latitude:"",
-    content:""
+    content:"",
+    nvabarData: {
+      showCapsule: 1,
+      title: '',
+    },
+    height: app.globalData.height * 2 + 20,
   },
 
   /**
@@ -121,7 +127,7 @@ Page({
         'longitude': lon
       }
       // console.log(temp)
-      post("/api/mapPush",temp).then((obj)=>{
+      post("/api/point",temp).then((obj)=>{
         if (obj.code==200){
           setTimeout(() => { wx.navigateBack();},500);
         }

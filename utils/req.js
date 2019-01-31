@@ -1,5 +1,5 @@
-let localUrl ="https://lab.zqyyh.com";
 
+let localUrl = "http://localhost:8888";
 export function post (url,data) {
 	return new Promise((resolve,reject)=> {
 		wx.showNavigationBarLoading()

@@ -10,7 +10,12 @@ Page({
       { name: "首页", status:true },
       { name: "成绩", status: true },
       { name: "文章", status: true },
-    ]
+    ],
+    nvabarData: {
+      showCapsule: 1,
+      title: '',
+    },
+    height: app.globalData.height * 2 + 20,
   
   },
 

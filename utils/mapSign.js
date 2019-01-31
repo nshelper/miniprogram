@@ -1,5 +1,3 @@
-
-
 export function markers (longitude,latitude,content,type,id) {
   return {
     iconPath: "/images/common/position.png",

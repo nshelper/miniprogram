@@ -1,6 +1,6 @@
 <import src="/template/head/head.wxml" />
-
-<view class="opensource">
+<nav-bar navbar-data='{{nvabarData}}'></nav-bar>
+<view class="opensource" style='margin-top: {{height}}px'>
   <template is="head-classify" data="{{title: '关于开源'}}" />
   <view class="opensource__about">
     <text class="opensource__statement">开源是一种精神，开源创造无限可能。开源是自由的，而不是免费的。Free(自由) is not free(免费)。源码仅作为交流学习使用，请勿用于商业用途。</text>

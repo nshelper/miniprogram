@@ -3,7 +3,12 @@ var app = getApp();
 Page({
   data: {
     mode: 'wechatpay',
-    donorList: []
+    donorList: [],
+    nvabarData: {
+      showCapsule: 1,
+      title: '',
+    },
+    height: app.globalData.height * 2 + 20,
   },
 
   onLoad: function() {

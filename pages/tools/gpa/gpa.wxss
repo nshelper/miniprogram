@@ -48,7 +48,7 @@ page{
   color: red;
 }
 .gpa__box {
-  height:720rpx;
+  height:72vh;
   overflow: auto;
 }
 .gpa__item {

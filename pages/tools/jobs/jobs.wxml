@@ -1,0 +1,43 @@
+<import src="/template/loading/loading.wxml"/>
+<import src="/template/floor/floor.wxml" />
+<import src="/template/placeholder/placeholder.wxml" />
+<nav-bar navbar-data='{{nvabarData}}'></nav-bar>
+<template wx:if="{{loading}}" is="loading" data="{{title:'获取数据中'}}" />
+
+<view class="jobs_container" style='margin-top: {{height}}px;padding-top:5rpx;'>
+  <block wx:for="{{list}}" wx:key="{{this}}">
+     <!-- <view class="jobs_ad" wx:if="{{!((index+1)%6)}}">
+      <ad unit-id="adunit-23ea9bf3bb93851e"></ad>
+    </view> -->
+    <view class="jobs_ad" wx:if="{{((index+1)==4)}}">
+      <ad unit-id="adunit-23ea9bf3bb93851e"></ad>
+    </view>
+    <view class="jobs_item"   bindtap="viewDetail" data-info="{{item}}" hover-class="jobs_item_hover">
+      <view class="jobs_title">{{item.title}}</view>
+      <view class="jobs_floor">
+          <view class="item_box">
+              <view class="item_time_icon">
+                  <image src="/images/common/author.png"></image>
+              </view>
+              <view class="item_time_text item_time_author">{{item.author.length>0?item.author:'未知来源'}}</view>
+          </view>
+          <view class="item_box">
+             <view class="item_time_icon">
+                <image src="/images/common/time.png"></image>
+            </view>
+            <view class="item_time_text">{{item.date}}</view>
+          </view>
+      <!--     <view class="item_time_icon">
+              <image src="/images/common/view.png"></image>
+          </view>
+          <view class="item_time_text">{{item.view?item.view:'0'}}</view> -->
+      </view>
+    </view>
+    </block>
+    <block wx:if="{{list.length==0}}">
+      <view class="none_container">
+        <template is="placeholder-fullpage" data="{{bg: '/images/placeholder/bg_no_data.png', text: '暂无信息'}}" />
+      </view>
+    </block>
+  <template is="floor" />
+</view>

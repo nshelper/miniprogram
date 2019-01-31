@@ -4,9 +4,12 @@
 <import src="/template/bar/bar.wxml" />
 <import src="/template/placeholder/placeholder.wxml" />
 <import src="/template/list/list.wxml" />
+<import src="/template/loading/loading.wxml"/>
+<nav-bar navbar-data='{{nvabarData}}'></nav-bar>
+<template wx:if="{{loading}}" is="loading" data="{{title:title}}" />
 
 <!-- 图书馆 -->
-<view class="library" >
+<view class="library"  style='margin-top: {{height}}px'>
   <!-- 顶部搜索 -->
   <template is="bar-search" data="{{placeholder: '馆藏查询', queryFocus: queryFocus}}" />
 

@@ -30,9 +30,12 @@ Page({
     ],
     nowtime:{hour:0,minute:0},
     select:0,
-    overnum:0
-
-
+    overnum:0,
+    nvabarData: {
+      showCapsule: 1,
+      title: '',
+    },
+    height: app.globalData.height * 2 + 20,
   },
 
   /**

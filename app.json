@@ -1,7 +1,6 @@
 {
   "pages": [
     "pages/index/index",
-    "pages/news/news",
     "pages/more/more",
     "pages/more/binding",
     "pages/more/ad",
@@ -11,24 +10,32 @@
     "pages/more/about/opensource",
     "pages/tools/calendar/calendar",
     "pages/tools/physical/physical",
-    "pages/tools/classroom/classroom",
     "pages/tools/library/library",
     "pages/tools/library/query",
     "pages/tools/score/score",
     "pages/tools/run/run",
     "pages/tools/gpa/gpa",
-    "pages/tools/course/course",
     "pages/tools/middle/middle",
     "pages/tools/schedule/schedule",
     "pages/tools/article/article",
     "pages/tools/class/class",
     "pages/tools/map/map",
-    "pages/tools/map/mapform"
+    "pages/tools/map/mapform",
+    "pages/tools/jobs/article",
+    "pages/tools/jobs/jobs",
+    "pages/tools/avatar/avatar"
   ],
   "window": {
     "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#fff",
-    "navigationBarTitleText": "WeChat",
-    "navigationBarTextStyle": "black"
-  }
+    "navigationBarTitleText": "",
+    "navigationBarTextStyle": "black",
+    "navigationStyle": "custom"
+  },
+  "usingComponents": {
+    "nav-bar": "/component/navbar/index"
+  },
+  "navigateToMiniProgramAppIdList": [
+    "wxd5179a12e8d21f50"
+  ]
 }

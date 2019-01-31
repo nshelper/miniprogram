@@ -2,8 +2,11 @@
 
 <import src="/template/list/list.wxml" />
 <import src="/template/placeholder/placeholder.wxml" />
+<import src="/template/loading/loading.wxml"/>
+<nav-bar navbar-data='{{nvabarData}}'></nav-bar>
+<template wx:if="{{!bookList.length}}" is="loading" data="{{title:'loading'}}" />
 
-<view class="query">
+<view class="query" style='margin-top: {{height}}px'>
 
 
   <view class="query-list">

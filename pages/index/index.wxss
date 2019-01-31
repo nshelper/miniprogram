@@ -4,14 +4,68 @@
     z-index: 0;
 }
 
+::-webkit-scrollbar{
+    width: 0;
+    height: 0;
+    color: transparent;
+}
+.index_navbar{
+    position: fixed;
+    width: 100%;
+    background-color: #99CCFF;
+    z-index: 8;
+    top:0;
+    left: 0;
+    translate: 0.5s;
+}
+
+.more{
+    padding:0 6px;
+    position: absolute;
+    left: 8px;
+    border-radius: 32px;
+    z-index: 9;
+    height: 32px;
+    background-color: rgba(255, 255, 255, 0.5);
+    box-sizing: border-box;
+    border:1rpx rgba(255, 255, 255,0.3) solid;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.more:active{
+    opacity: 0.7;
+}
+.more .bind{
+    width:18px;
+    height: 18px;
+    margin: 0 8px;
+}
+.more .border_center{
+    width: 1px;
+    height: 20px;
+    background-color: rgba(255, 255, 255,0.3);
+}
+.nav-share{
+    margin: 0;
+    padding: 0;
+    background-color: transparent;
+    border: none;
+    box-sizing: content-box;
+    line-height: 1;
+}
+.nav-share::after {
+border: none;
+}
 .bg {
     width: 100%;
-    height: 300rpx;
+    height: 400rpx;
     position: absolute;
     background-image: linear-gradient(180deg,#99CCFF,#99CCFF,#f7f7f7);
-    top: 0;
-    z-index: -1;
-    border-radius: 18%;
+    top: -150rpx;
+    z-index: -2;
+    border-radius: 0 0 18% 18%;
     transform: translateY(-80rpx);
     filter: blur(3rpx);
 }
@@ -19,8 +73,12 @@
 .model_title {
     text-align: center;
     margin: 10rpx auto;
-    font-size: 38rpx;
+    font-size: 36rpx;
     font-weight: bold;
+}
+
+.model_title .weekend{
+   font-size: 22rpx;
 }
 
 .model_line {
@@ -158,7 +216,7 @@
     flex-flow: row wrap;
     align-content: flex-start;
     padding-bottom: 10rpx;
-    margin: 0rpx 18rpx;
+    margin: 0rpx 14rpx;
 }
 
 .tools__item {
@@ -167,13 +225,24 @@
     justify-content: center;
     align-items: center;
     box-sizing: border-box;
-    width: 50%;
+    width: calc(100%/3);
+    transition: 0.3s;
+}
+
+.tools__item:active{
+  opacity:0.8;
+  transform: translateY(1px);
+}
+
+.navigate_hover{
+  opacity:0.8;
+  transform: translateY(1px);
 }
 
 .tools__icon {
     display: block;
-    width: 320rpx;
-    height: 117rpx;
+    width: 214.5rpx;
+    height: 100rpx;
     margin: 5rpx auto;
 }
 
@@ -211,56 +280,65 @@
     height: 248rpx;
     background-size: cover;
     background-repeat: no-repeat;
+    font-style: oblique;
 }
-
-.tool_bottom_line {
-    width: 100%;
-    background-color: rgba(255,255,255,.9);
-    height: 60rpx;
-    position: absolute;
-    bottom: 0rpx;
-    display: flex;
-    flex-flow: row nowrap;
-}
-
-.tool_bottom_line .item_time_icon {
-    display: flex;
-    align-items: center;
-    line-height: 60rpx;
-    margin-left: 30rpx;
-}
-
-.item_time_icon image {
-    width: 35rpx;
-    height: 35rpx;
-}
-
-.tool_bottom_line .item_time_text {
-    margin-left: 20rpx;
-    line-height: 60rpx;
-    color: #707070;
-    font-size: 24rpx;
-}
-
 .tool__item .item_title {
-    width: 600rpx;
+    max-width: 600rpx;
+    box-sizing: border-box;
     position: absolute;
     left: 30rpx;
-    bottom: 70rpx;
+    bottom: 110rpx;
     font-weight: bold;
-    font-size: 30rpx;
+    font-size: 35rpx;
     color: azure;
     filter: alpha(Opacity=80);
     opacity: 0.8;
     max-height: 100rpx;
     text-overflow: ellipsis;
     white-space: nowrap;
+    text-shadow: 2px 2px 0 rgba(252,27,17,0.5), -2px -2px 0 rgba(0,183,255,0.5);
+    padding-bottom: 10rpx;
+    padding-right: 10rpx;
+    border-bottom: 1px dashed azure;
+    overflow: hidden;
+    /* transform: translate(0px ,1px); */
+    animation: revolveScale 2s ease-in-out 12 alternate;
+}
+
+@keyframes revolveScale {
+  40% {
+    opacity: 0.4;
+  }
+  100% {
+    transform: translate( 0 , 0)  scale(1);
+    opacity: 1;
+  }
+}
+
+.tool__item .item_author {
+    width: 600rpx;
+    position: absolute;
+    left: 30rpx;
+    bottom: 60rpx;
+    font-size: 28rpx;
+    color: azure;
+    opacity: 0.8;
+}
+
+.tool__item .item_date {
+    width: 600rpx;
+    position: absolute;
+    left: 30rpx;
+    bottom: 20rpx;
+    font-size: 23rpx;
+    color: azure;
+    opacity: 0.8;
 }
 
 .tool_bottom_linear {
     width: 100%;
-    height: 192rpx;
-    background-image: linear-gradient(0deg,rgba(0,0,0,.8),rgba(0,0,0,.6),rgba(0,0,0,0),rgba(0,0,0,0));
+    height: 60%;
+    background-image: linear-gradient(0deg,rgba(0,0,0,.8),rgba(0,0,0,.5),rgba(0,0,0,0));
     bottom: 0rpx;
     position: absolute;
 }
@@ -277,6 +355,7 @@
 
 .tool_info {
     position: relative;
+    font-family: "Microsoft Yahei";
 }
 
 .tool_info .title {

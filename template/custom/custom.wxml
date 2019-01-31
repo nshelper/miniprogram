@@ -1,0 +1,6 @@
+<template name="customNav">
+   <view class="custom_header">
+     <view wx-if="{{show}}" class="button" hover-class="button-focus">返回</view>
+   </view>
+   <view class="custom_block"></view>
+</template>

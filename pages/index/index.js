@@ -1,8 +1,17 @@
 var app = getApp();
 import { classList ,nowTime} from "../../utils/util";
+import { get } from "../../utils/req"
 
 Page({
   data: {
+    // 此页面 页面内容距最顶部的距离
+    height: app.globalData.height * 2 +20,
+    opacity:0.00,   
+    index_ad:false,
+    index_ad_bg:"",
+    index_ad_uuid:"",
+    index_ad_remark:"",
+    countDown:3,
     bind: false,
     randomImg: '',
     indexAd: true,
@@ -10,11 +19,12 @@ Page({
     net:{},
     cardbal:'N/A',
     todayClass: [],
-    defaultBg: ["http://struggler.qiniudn.com/style2.png", "http://struggler.qiniudn.com/style1.png"],
+    todayWeekend: 0,
+    defaultBg: ["https://struggler2018-1251621192.cos.ap-beijing.myqcloud.com/style2.png", "https://struggler2018-1251621192.cos.ap-beijing.myqcloud.com/style1.png"],
     //tool
     headTool: [
         {
-        path: 'http://struggler.qiniudn.com/run2018.png',
+        path: 'https://struggler2018-1251621192.cos.ap-beijing.myqcloud.com/run2018.png',
           name: '运动圈',
           url: '/pages/tools/run/run'
       }
@@ -69,6 +79,20 @@ Page({
         url: '/pages/tools/map/map',
         support: true,
         bind: true
+      },
+      {
+        id: 'ljobs',
+        name: '招聘',
+        url: '/pages/tools/jobs/jobs',
+        support: true,
+        bind: false
+      },
+      {
+        id: 'lavatar',
+        name: '圣诞头像',
+        url: '/pages/tools/avatar/avatar',
+        support: true,
+        bind: false
       }
     ],
     floorTool: [
@@ -84,14 +108,15 @@ Page({
       }
     ],
     msgList: [
-      { select: "gpaProgram", title: "如果不知道绩点如何计算请点这里" },
-      { select: "", title: "欢迎关注公众号:STRUGGLER" },
-      { select: "gpaPage", title: "最新功能：GPA自动计算/必修，选修分统计" },
+      { select: "gpaProgram", title: "不知道绩点如何计算请点这里" },
+      { select: "", title: "本小程序由STRUGGLER提供技术支持" },
+      { select: "feedback", title: "点此联系客服反馈问题" },
       { select: "donate", title: "打赏/捐赠开发者" }
       ]
   },
 
   onLoad: function() {
+    this.index_display();
     wx.showNavigationBarLoading();
     this.getConfig();
     this.getHeader();
@@ -125,14 +150,22 @@ Page({
   onPullDownRefresh: function() {
     wx.stopPullDownRefresh();
   },
-
+  //控制滑动导航栏透明度
+  onPageScroll(e){
+    let opacity=e.scrollTop/this.data.height;
+    if (e.scrollTop>=this.data.height){
+      opacity = 1;
+    }
+    this.setData({
+      opacity:opacity
+    })
+  },
   getUserInfo: function() {
     var store = {};
     store = app.store;
     //app.checkBind();
     // console.log(store.adOptions[0].status);
     if (JSON.stringify(store) !== '{}' && store.bind && store.adOptions) {
-
       this.setData({
         bind: store.bind,
         userId: store.user,
@@ -158,31 +191,42 @@ Page({
     let [date,today] = nowTime()
     var that =this
     wx.request({
-      url: app.api + '/api/eipinfo',
+      url: app.api + '/api/eip',
       method: 'POST',
       header: {
         //'content-type': 'application/json' // 默认值
-        // 'auth': app.store.auth,
+        'auth': app.store.auth,
         'content-type': 'application/x-www-form-urlencoded'
       },
       data: {
-        user: app.store.user,
+        // user: app.store.user,
         type: 'class_',
+        //  date: '2018-12-04'
         date: date
-        // date: '2018-09-18'
       },
       success: requestRes=>{
-        let _requestRes = requestRes.data.datas
-        if (!_requestRes.err){
-          let classInfo = _requestRes.data.kb
+        let _requestRes = requestRes.data.data
+        if (!requestRes.data.status){
+          let classInfo = _requestRes.kb
           let todayClass = classInfo.filter((v) => { return v.rq === date})
-          // console.log(todayClass)
+          let todayWeekend = 0
+          if (todayClass.length > 0){
+            // console.log(todayClass)
+            todayWeekend=todayClass[0].kcid.split("_")[5]
+          }
           that.setData({
-            todayClass:todayClass
+            todayClass:todayClass,
+            todayWeekend: todayWeekend
           });
         }
       }
     })
+  },
+  //跳转绑定页面
+  navigatetoBind(){
+    wx.navigateTo({
+      url: '/pages/more/more',
+    });
   },
   // 跳转一卡通,课表页面
   navigatetoPage: function(e){
@@ -221,28 +265,19 @@ Page({
           }
         }
       });
-      /*
-      wx.showToast({
-        title: '未绑定',
-        image: '/images/common/fail.png',
-        duration: 2000
-      });
-      */
     } else {
       wx.navigateTo({
         url: data.url
       });
-
     }
-
   },
   // 详情
   jump: function (e) {
     var data = e.currentTarget.dataset.select;
     // console.log(data);
-    if (data === "gpaPage" && data!="") {
+    if (data === "feedback" && data!="") {
       wx.navigateTo({
-        url: '/pages/tools/gpa/gpa'
+        url: '/pages/more/about/about'
       });
     } else if (data=== "gpaProgram" && data!="") {
       wx.navigateToMiniProgram({
@@ -260,15 +295,6 @@ Page({
         url: '/pages/more/about/donate',
       })
     }else {
-      /*
-      wx.previewImage({
-        urls: [""]
-      });
-      wx.navigateTo
-      wx.redirectTo({
-        url: '/pages/index/index'
-      });
-*/
     }
   },
 
@@ -302,24 +328,20 @@ Page({
   //获取主页面功能配置
   getConfig : function(){
     wx.request({
-      url: app.api + '/api/toolconfig',
+      url: app.api + '/api/indexconfig',
       method: 'GET',
       header: {
         'content-type': 'application/x-www-form-urlencoded',
       },
       success: requestRes => {
-        var _requestRes = requestRes.data;
+        var _requestRes = requestRes.data.data;
         let littleTools = this.data.littleTool;
         littleTools.forEach((item,index) => {
           item.support = Boolean(_requestRes[index].status)
-
         });
         this.setData({
           littleTool: littleTools
         });
-        // console.log(this.data.littleTool);
-        //console.log(_requestRes);
-
         wx.hideNavigationBarLoading();
 
       },
@@ -341,16 +363,16 @@ Page({
   //获取主页swiper信息
   getHeader: function () {
     wx.request({
-      url: app.api + '/api/headerconfig',
+      url: app.api + '/api/indexswiper',
       method: 'GET',
       header: {
         'content-type': 'application/x-www-form-urlencoded',
       },
       success: requestRes => {
-        var _requestRes = requestRes.data;
+        var _requestRes = requestRes.data.data.reverse().slice(0,4);
         let headTool = this.data.headTool;
         this.setData({
-          headTool: headTool.concat(_requestRes)
+          headTool: _requestRes.concat(headTool)
         });
         // console.log(_requestRes);
 
@@ -380,32 +402,24 @@ Page({
     });
     var that =this;
         wx.request({
-          url: app.api + '/api/eipinfo',
+          url: app.api + '/api/eip',
           method: 'POST',
           header: {
             //'content-type': 'application/json' // 默认值
-            'content-type': 'application/x-www-form-urlencoded'
-            // 'auth':app.store.auth
+            'content-type': 'application/x-www-form-urlencoded',
+            'auth':app.store.auth
           },
           data: {
-            user: app.store.user,
+            // user: app.store.user,
             type: 'card'
           },
           success: requestRes=>{
-            // console.log(requestRes.data);
-            var _requestRes = requestRes.data.datas;
-            if (!_requestRes.err) {
+            var _requestRes = requestRes.data;
+            if (!requestRes.data.status) {
               that.setData({
                 cardbal: _requestRes.data.CARDBAL+"元"
               });
             }
-
-          },
-          fail:()=>{
-
-          },
-          complete:()=>{
-
           }
       })
   },
@@ -413,22 +427,21 @@ Page({
   getNet: function () {
     var that  = this;
     wx.request({
-      url: app.api + '/api/eipinfo',
+      url: app.api + '/api/eip',
       method: 'POST',
       header: {
         //'content-type': 'application/json' // 默认值
-        // 'auth': app.store.auth,
+        'auth': app.store.auth,
         'content-type': 'application/x-www-form-urlencoded'
       },
       data: {
-        user: app.store.user,
+        // user: app.store.user,
         type: 'net'
-
       },
       success: requestRes => {
-        var _requestRes = requestRes.data.datas.data;
+        var _requestRes = requestRes.data.data;
         // console.log(_requestRes);
-        if (!_requestRes.err && _requestRes.package_name ){
+        if (!requestRes.data.status && _requestRes.package_name ){
           let bytes = 0 ;
           let bytes_array = _requestRes.package;
           bytes_array.forEach((item,index)=>{
@@ -442,13 +455,53 @@ Page({
           });
         }
 
-      },
-      fail: () => {
-
-      },
-      complete: () => {
-
       }
     })
+  },
+  //冷加载开屏广告相关
+  index_skip(){
+    this.setData({
+      index_ad: false
+    })
+  },
+  index_select(adList){
+    let [date, today] = nowTime();
+    return adList.filter((e)=>{
+      return e.dateStart<=date&&e.dateEnd>=date
+    })[0]
+  },
+  index_display(){
+    get("/api/adlist").then((obj)=>{
+      console.log(obj)
+      let one=this.index_select(obj.data)
+      if (one){
+        this.setData({
+          index_ad_bg: one.backgroundUrl,
+          index_ad_uuid: one.ID,
+          index_ad_remark: one.remark,
+          index_ad: true
+        });
+        let count = setInterval(() => {
+          let countDown = this.data.countDown - 1;
+          this.setData({
+            countDown: countDown
+          });
+          if (countDown == -1) {
+            clearInterval(count)
+            this.setData({
+              index_ad: false
+            })
+          }
+        }, 1000)
+      }
+    })
+  },
+  showDetail(){
+    wx.navigateTo({
+      url: `/pages/tools/article/article?ID=${this.data.index_ad_uuid}`,
+    })
+  },
+  move() {
+    //阻止遮罩穿透
   }
 });

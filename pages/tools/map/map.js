@@ -1,4 +1,5 @@
 // pages/map/map.js
+var app = getApp();
 import { markers } from'../../../utils/mapSign.js';
 // import {info} from '../../utils/positionRecord.js';
 import { post, get, upload } from '../../../utils/req.js'
@@ -17,7 +18,12 @@ Page({
     items: [["教学楼", "学生公寓", "生活相关"], ["教学楼", "学生公寓", "生活相关"]],//0代表赛罕,1代表盛乐.
     // 教学区
     markers: [],
-    info:{}
+    info:{},
+    nvabarData: {
+      showCapsule: 1,
+      title: '',
+    },
+    height: app.globalData.height * 2 + 20,
   },
 
   /**
@@ -92,12 +98,12 @@ Page({
   },
   getList(){
     var that = this;
-    get("/api/mapSign").then((obj) => {
+    get("/api/point").then((obj) => {
       // console.log(obj);
       that.setData({
-        info: obj
+        info: obj.data
       });
-      that.createMarkers(obj.mapSign.saihan[0], 'saihan', 0);
+      that.createMarkers(obj.data.mapSign.saihan[0], 'saihan', 0);
     });
   },
   createMarkers: function (data,type,id) {

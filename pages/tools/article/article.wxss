@@ -1,9 +1,10 @@
 @import "../../../component/wxParse/wxParse.wxss";
-
+page{
+    background-color: #efefef;
+}
 .article_container {
     display: flex;
     background-size: 100% 100%;
-    padding: 30rpx;
     max-height: 100%;
     overflow-y: scroll;
     background-attachment: scroll;
@@ -11,15 +12,17 @@
 }
 
 .none_container {
+    width: 100%;
     margin: 0 auto;
     padding: 40rpx 0rpx 20rpx 0rpx;
     min-height: 1080rpx;
+    background-color: #ffffff;
 }
 
 .main {
-    width: 100%;
     margin: 0 auto;
-    min-height: 1080rpx;
+    padding: 30rpx 30rpx 0rpx 30rpx;
+    background-color: #ffffff;
 }
 
 .header {
@@ -46,9 +49,8 @@
     color: #888888;
     text-align: center;
 }
-
 .date_text {
-    margin-left: 10rpx;
+    margin-left: 15rpx;
 }
 
 .article_text {
@@ -57,7 +59,6 @@
 }
 
 .content {
-    min-height: 800rpx;
     display: flex;
     flex-direction: column;
     overflow: hidden;
@@ -80,25 +81,34 @@
 
 .content_view .count {
     color: #707070;
-    font-size: 28rpx;
+    font-size: 30rpx;
     line-height: 50rpx;
     display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 50rpx;
+    box-sizing: border-box;
 }
 
 .count .count_icon {
-    position: relative;
-    margin-left: 8rpx;
-    margin-right: 5rpx;
-    top: 10rpx;
-    width: 30rpx;
-    height: 30rpx;
+  margin-left: 8rpx;
+  margin-right: 8rpx;
+  margin-top: -1px;
+  width: 30rpx;
+  height: 30rpx;
+}
+.commit {
+  background-color: #efefef;
+  box-sizing: border-box;
+  width: 100%;
+  padding: 15rpx;
 }
 
 .page_ad {
-    margin-top: 20rpx;
-    border-radius: 25rpx;
+  margin-top: 20rpx;
+  border-radius: 25rpx;
 }
 
 .page_ad ad {
-    margin: 0 auto;
+  margin: 0 auto;
 }

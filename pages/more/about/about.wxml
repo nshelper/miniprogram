@@ -1,4 +1,5 @@
-<view class="about">
+<nav-bar navbar-data='{{nvabarData}}'></nav-bar>
+<view class="about" style='margin-top: {{height}}px'>
   <view class="app">
     <image class="app__logo" src="/images/logo.png"></image>
     <view class="app__info">

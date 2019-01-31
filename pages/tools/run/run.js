@@ -14,7 +14,12 @@ Page({
     title:'听说走的越多越健康！',
     steplist:[],
     tempData:[],
-    sliceStart:1
+    sliceStart:1,
+    nvabarData: {
+      showCapsule: 1,
+      title: '',
+    },
+    height: app.globalData.height * 2 + 20,
   },
 
   /**
@@ -45,18 +50,11 @@ Page({
             wx.redirectTo({
               url: '/pages/more/binding'
             });
-            //console.log('用户点击确定');
           } else if (res.cancel) {
-            //wx.navigateBack();
-            //console.log('用户点击取消');
           }
         }
       });
     }
-    
-
-    
-  
   },
 
   /**
@@ -103,12 +101,9 @@ Page({
         wx.showNavigationBarLoading();
         this.data.pullDownFlag = false;
         this.data.sliceStart = 1;
-        this.list();
-        
-      }
-    
+        this.list();   
+      } 
     wx.stopPullDownRefresh();
-  
   },
 
   /**
@@ -161,7 +156,7 @@ Page({
   decode: function () {
     var that = this;
     wx.request({
-      url: app.api + '/api/run',
+      url: app.api + '/api/stepupdate',
       method: 'POST',
       header: {
         'content-type': 'application/x-www-form-urlencoded',
@@ -182,7 +177,7 @@ Page({
         //console.log(newsteplist);
         
         that.setData({
-          userStep: _requestRes
+          userStep: _requestRes.data
         });
         
         //that.send();
@@ -214,35 +209,6 @@ Page({
       }
     });
   },
-  send: function () {
-    var that = this;
-    console.log('start send');
-    wx.request({
-      url: app.api + '/api/stepinto',
-      method: 'POST',
-      header: {
-        'content-type': 'application/x-www-form-urlencoded',
-      },
-      data: {
-        nickName: that.data.nickName,
-        avatarUrl: that.data.avatarUrl,
-        step: that.data.step
-      },
-      success: requestRes => {
-        var _requestRes = requestRes.data;
-        console.log(_requestRes);
-        console.log('send step successful');
-        
-      },
-      fail: () => {
-
-      },
-      complete: () => {
-
-      }
-    });
-  },
-
   list: function () {
     console.info('getting')
     var that = this;
@@ -254,10 +220,9 @@ Page({
       },
       success: requestRes => {
         var _requestRes = requestRes.data;
-        console.log(_requestRes.length);
         that.setData({
           list: true,
-          tempData: _requestRes,
+          tempData: _requestRes.data,
           pullDownFlag:true
         });
         this.sliceData();

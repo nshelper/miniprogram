@@ -1,9 +1,13 @@
 <!-- 导入模板 -->
 <import src="/template/help/help.wxml" />
 <import src="/template/tip/tip.wxml" />
+<import src="/template/loading/loading.wxml"/>
+<nav-bar navbar-data='{{nvabarData}}'></nav-bar>
+<template wx:if="{{loading}}" is="loading" data="{{title:'正在校验中'}}" />
+
 
 <!-- 绑定 -->
-<view class="binding">
+<view class="binding" style='margin-top: {{height}}px'>
 
   <!-- 第一步 -->
   <view class="step-one animation-slideIn {{step !== 1 ? 'animation-slideOut' : ''}}" wx:if="{{step === 1}}">

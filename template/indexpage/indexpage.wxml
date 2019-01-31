@@ -1,0 +1,20 @@
+<template name="indexadvertising">
+
+<view class="indexad_container {{countDown==0?'indexad_container_out':''}}" hover-class="none" catchtouchmove="move" >
+  <view class="indexad_box" style="background-image: url({{indexBg}});" bindtap="showDetail">
+    <view class="box_desc">限时广告 {{countDown}}</view>
+     <view class="box_text">{{remark}}</view>
+     <image class="box_icon" src="/images/more/arrow_ricon.png"></image>
+    <view class="box_content"></view>
+  </view>
+  <view class="indexad_floor">
+   <view class="floor_content">
+    <image class="content_logo" src="/images/common/longlogo.png"></image>
+    <view class="content_text">Copyright ©2018 STRUGGLER</view>
+   </view>
+   <view class="floor_skip" bindtap="index_skip">跳过</view>  
+  </view>
+    
+</view>
+
+</template>

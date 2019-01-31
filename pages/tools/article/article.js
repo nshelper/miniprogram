@@ -8,6 +8,12 @@ Page({
    * 页面的初始数据
    */
   data: {
+    nvabarData: {
+      showCapsule: 1, //是否显示左上角图标
+      title: '', //导航栏 中间的标题
+    },
+    // 此页面 页面内容距最顶部的距离
+    height: app.globalData.height * 2+20 ,   
     ID:{},
     content:{},
     articleAd:true
@@ -106,11 +112,11 @@ Page({
       var that = this;
       if (app.store.nickName) {
         let params = {
-          nickName: app.store.nickName,
-          ID: this.data.id
+          user: app.store.nickName,
+          p: this.data.id
         };
-        post("/api/articlelike", params).then((obj) => {
-          obj.status ? that.setData({
+        post("/api/artuplike", params).then((obj) => {
+          obj.data ? that.setData({
             like: that.data.like + 1
           }) : that.setData({
             like: that.data.like - 1
@@ -122,10 +128,9 @@ Page({
         duration: 2e3
       });
   },
-  //获取主页swiper信息
   getArticles: function (ID) {
     var that = this;
-    let newUrl =app.api+'/api/articlelist?ID='+ID.toString();
+    let newUrl = app.api +'/api/artdetail?p='+ID.toString();
     wx.request({
       url: newUrl,
       method: 'GET',
@@ -133,15 +138,16 @@ Page({
         'content-type': 'application/x-www-form-urlencoded',
       },
       success: requestRes => {
-        var _requestRes = requestRes.data;
+        var _requestRes = requestRes.data.data;
+        
         this.setData({
-          content: _requestRes[0],
+          content: _requestRes,
           ID:ID,
-          like: _requestRes[0].like
+          like: _requestRes.like ? _requestRes.like:0
         });
 
         //这里是wxparse测试
-        WxParse.wxParse('article', 'html', that.data.content.content, that, 18);
+        WxParse.wxParse('article', 'html', that.data.content.content, that, 25);
         // console.log(this.data.article);
 
 

@@ -1,17 +1,20 @@
 <!-- 导入模板 -->
 <import src="/template/card/card.wxml" />
 <import src="/template/getcode/getcode.wxml" />
+<import src="/template/loading/loading.wxml"/>
 
+<template wx:if="{{reqStatus}}" is="loading" data="{{title:title}}" />
+<nav-bar navbar-data='{{nvabarData}}'></nav-bar>
 
 <!-- 成绩查询 -->
-<view class="score">
+<view class="score" style='margin-top: {{height}}px'>
   <!-- 成绩卡片 -->
   <template is="card-score" data="{{ list: scoreList[index],index:index,selectTerm:selectTerm,scoreAd:scoreAd}}" />
   <!-- getcode -->
   <!--<template is="getcode" data="{{...help,imgcode:imgcode}}" /> -->
 </view>
 
-<view wx:if="{{detailStatus}}" class="score-detail" id="score-detail" bindtap="hideDetail">
+<view wx:if="{{detailStatus}}" class="score-detail" id="score-detail" bindtap="hideDetail"  catchtouchmove="move" >
   <view class="score-detail__box">
     <view class="score-detail__content">
       <view class="score-detail__item">

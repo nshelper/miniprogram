@@ -3,17 +3,20 @@
 <import src="/template/list/list.wxml" />
 <import src="/template/getcode/getcode.wxml" />
 <import src="/template/floor/floor.wxml" />
+<import src="/template/loading/loading.wxml"/>
+<nav-bar navbar-data='{{nvabarData}}'></nav-bar>
+<template wx:if="{{ reqFlag}}" is="loading" data="{{title:'获取数据中'}}" />
 
 <!-- 体测成绩 -->
-<view class="">
+<view class="" style='margin-top: {{height}}px;padding-top:3rpx;'>
   <block wx:if="{{!scoreList.err}}" wx:key="{{this}}">
    <template is="tcPasswd" data="{{passwdExist:passwdExist}}" />
-    <template is="list-physical" data="{{sportStatus:sportStatus,data0:scoreList.data0,className:scoreList.className,data1:scoreList.data1,stuName:scoreList.stuName}}" />
+    <template is="list-physical" data="{{sportStatus:sportStatus,classDetail:scoreList.classDetail,className:scoreList.className,sportsDetail:scoreList.sportsDetail,stuName:scoreList.name}}" />
   </block>
 
   <!-- 暂无 -->
   <block wx:if="{{scoreList.err}}">
-     <template is="placeholder-fullpage" data="{{bg:'/images/placeholder/bg_no_data.png'}}" /> 
+     <template is="placeholder-fullpage" data="{{bg:'/images/placeholder/bg_no_data.png'}}" style='margin-top: {{height}}px' /> 
   </block>
   <view class="floor">
     <ad class="page_ad" unit-id="adunit-88d12390776a06e3"></ad>
