@@ -14,8 +14,8 @@ App({
 
 
   // API
-  
-  api: 'http://localhost:8888',
+
+   api: 'http://localhost:8888',
 
 
   onShow:function(options){
