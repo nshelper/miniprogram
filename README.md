@@ -60,12 +60,13 @@ app.json
 ```
 
 ## 页面截图
-<figure class="third">
-    <img src="./微信图片_20190131121800.jpg" width="200" >
-    <img src="./微信图片_20190131121708.jpg" width="200">
-    <img src="./微信图片_20190131121732.jpg" width="200">
-    <img src="./微信图片_20190131121747.jpg" width="200">
-</figure>
+<div align="center">
+    <img src="./微信图片_20190131121800.jpg" width="49%">
+    <img src="./微信图片_20190131121708.jpg" width="49%">
+    <img src="./微信图片_20190131121732.jpg" width="49%">
+    <img src="./微信图片_20190131121747.jpg" width="49%">
+</div>
+
 
 ## 怎么体验内师助手?
 
